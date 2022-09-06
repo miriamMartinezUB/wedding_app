@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:wedding_jc/features/main_flow/main_flow_bloc.dart';
 import 'package:wedding_jc/infrastructure/language/language_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_bloc.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<NavigatorBloc>(
           create: (context) => NavigatorBloc(0),
+        ),
+        BlocProvider<MainFlowBloc>(
+          create: (context) => MainFlowBloc(),
         ),
       ],
       child: MaterialApp(
