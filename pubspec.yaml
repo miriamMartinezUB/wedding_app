@@ -45,6 +45,8 @@ dependencies:
   flutter_translate: ^4.0.3
   shared_preferences: ^2.0.15
 #  connectivity_plus: ^2.3.6+1
+  flutter_stylized_text:
+    git: https://github.com/miriamMartinezUB/flutter_stylized_text.git
 
 
 dev_dependencies:

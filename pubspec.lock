@@ -102,6 +102,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_stylized_text:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "1bb93ee7490132e35291e71c776cfa275c18d6eb"
+      url: "https://github.com/miriamMartinezUB/flutter_stylized_text.git"
+    source: git
+    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
