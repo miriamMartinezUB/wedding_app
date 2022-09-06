@@ -13,21 +13,26 @@ import 'package:wedding_jc/resources/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   setupLocator();
-  // final delegate =
-  //     await LocalizationDelegate.create(fallbackLocale: 'ca', supportedLocales: ['ca'], basePath: 'locale');
+
+  final delegate = await locator<LanguageService>().initDelegate();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((value) {
-    runApp(MyApp());
-    // runApp(LocalizedApp(delegate, MyApp()));
+    runApp(LocalizedApp(delegate, const MyApp()));
   });
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    LanguageService languageService = locator<LanguageService>();
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<NavigatorBloc>(
@@ -36,12 +41,17 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Wedding Judit and Cristian',
-        // localizationsDelegates: [
-        //   LocalizedApp.of(context).delegate,
-        //   GlobalMaterialLocalizations.delegate,
-        //   GlobalWidgetsLocalizations.delegate,
-        //   GlobalCupertinoLocalizations.delegate,
-        // ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          languageService.getDelegate(context),
+        ],
+        supportedLocales: languageService.getSupportedLocales(context),
+        locale: languageService.getCurrentLocale(context),
+        theme: ThemeData(
+          backgroundColor: PaletteColors.background,
+          primaryColor: PaletteColors.primary,
+        ),
         initialRoute: Routes.splash,
         onGenerateRoute: WeddingRouter.generateRoute,
         navigatorKey: locator<NavigationService>().navigatorKey,
