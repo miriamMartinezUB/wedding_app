@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wedding_jc/infraestructure/locator_setup.dart';
-import 'package:wedding_jc/infraestructure/navigation/navigation_bloc.dart';
-import 'package:wedding_jc/infraestructure/navigation/navigator_service.dart';
-import 'package:wedding_jc/infraestructure/navigation/router.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_translate/flutter_translate.dart';
+import 'package:wedding_jc/infrastructure/language/language_service.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
+import 'package:wedding_jc/infrastructure/navigation/navigation_bloc.dart';
+import 'package:wedding_jc/infrastructure/navigation/navigator_service.dart';
+import 'package:wedding_jc/infrastructure/navigation/router.dart';
+import 'package:wedding_jc/resources/palette_colors.dart';
 import 'package:wedding_jc/resources/routes.dart';
 
 void main() async {

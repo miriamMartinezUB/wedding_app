@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wedding_jc/infraestructure/locator_setup.dart';
-import 'package:wedding_jc/infraestructure/navigation/navigation_event.dart';
-import 'package:wedding_jc/infraestructure/navigation/navigator_service.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
+import 'package:wedding_jc/infrastructure/navigation/navigation_event.dart';
+import 'package:wedding_jc/infrastructure/navigation/navigator_service.dart';
 import 'package:wedding_jc/resources/routes.dart';
 
 class NavigatorBloc extends Bloc<NavigationEvent, dynamic> {

@@ -1,4 +1,4 @@
-import 'package:wedding_jc/infraestructure/navigation/navigation_modal.dart';
+import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 
 abstract class NavigationEvent {}
 
