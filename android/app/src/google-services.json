@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "947245210321",
+    "project_id": "wedding-j-and-c",
+    "storage_bucket": "wedding-j-and-c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947245210321:android:1c74500ec6c4b02746c3f0",
+        "android_client_info": {
+          "package_name": "com.example.wedding_jc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "947245210321-atafe6siehhafk5biq4j0pt7mktjrl5i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7etutTQsWwi--U1N8rm9fOXyGFsRE8bY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "947245210321-atafe6siehhafk5biq4j0pt7mktjrl5i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

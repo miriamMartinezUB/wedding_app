@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_jc/features/home/home_page.dart';
 import 'package:wedding_jc/features/information/information_page.dart';
-import 'package:wedding_jc/features/main_flow/main_flow_bloc.dart';
+import 'package:wedding_jc/features/main_flow/bloc/main_flow_bloc.dart';
 import 'package:wedding_jc/features/profile/profile_page.dart';
+import 'package:wedding_jc/resources/palette_colors.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,6 +17,11 @@ class MainPage extends StatelessWidget {
           return BottomNavigationBar(
             currentIndex: state.index,
             showUnselectedLabels: false,
+            showSelectedLabels: false,
+            backgroundColor: PaletteColors.bottomNavigationBackground,
+            selectedItemColor: PaletteColors.bottomNavigationSelectedItems,
+            unselectedItemColor: PaletteColors.bottomNavigationUnselectedItems,
+            iconSize: 28,
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(

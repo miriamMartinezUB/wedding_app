@@ -10,6 +10,10 @@ class HomeNavigationEvent extends NavigationEvent {
   HomeNavigationEvent();
 }
 
+class InitialRouteNavigationEvent extends NavigationEvent {
+  InitialRouteNavigationEvent();
+}
+
 class PushScreenNavigationEvent extends NavigationEvent {
   final NavigationModel model;
   PushScreenNavigationEvent({required this.model});

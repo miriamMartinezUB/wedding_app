@@ -1,6 +1,6 @@
 class NavigationModel {
   String route;
-  Map<String, dynamic>? arguments;
+  dynamic arguments;
 
   NavigationModel({required this.route, this.arguments});
 }

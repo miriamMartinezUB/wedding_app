@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:wedding_jc/features/main_flow/main_flow_bloc.dart';
+import 'package:wedding_jc/features/main_flow/bloc/main_flow_bloc.dart';
 import 'package:wedding_jc/infrastructure/language/language_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
-import 'package:wedding_jc/infrastructure/navigation/navigation_bloc.dart';
+import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigator_service.dart';
 import 'package:wedding_jc/infrastructure/navigation/router.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: PaletteColors.background,
           primaryColor: PaletteColors.primary,
+          shadowColor: PaletteColors.primary,
         ),
         initialRoute: Routes.splash,
         onGenerateRoute: WeddingRouter.generateRoute,

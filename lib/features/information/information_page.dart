@@ -7,7 +7,7 @@ class InformationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('information page'),
+        child: Text('information page - not implemented yet'),
       ),
     );
   }

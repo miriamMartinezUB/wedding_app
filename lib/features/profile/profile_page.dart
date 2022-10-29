@@ -7,7 +7,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('profile page'),
+        child: Text('profile page - not implemented yet'),
       ),
     );
   }
