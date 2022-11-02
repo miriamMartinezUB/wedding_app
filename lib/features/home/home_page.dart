@@ -12,6 +12,7 @@ import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/views/check.dart';
 import 'package:wedding_jc/views/shadow_card.dart';
 import 'package:wedding_jc/views/spinner.dart';
+import 'package:wedding_jc/views/text.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,8 +34,19 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Header(
-                      title: translate('welcome'),
+                      title: translate('app_name'),
                       subtitle: translate('app_description'),
+                    ),
+                    const SizedBox(
+                      height: Dimens.paddingLarge,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: Dimens.paddingLarge),
+                      child: AppText(
+                        translate('app_description'),
+                        type: TextTypes.body,
+                        align: TextAlign.center,
+                      ),
                     ),
                     ListView.builder(
                       shrinkWrap: true,

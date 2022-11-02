@@ -20,7 +20,7 @@ class CountDown extends StatelessWidget {
     final Duration duration = Dates.weedingDate.difference(DateTime.now());
     return SlideCountdown(
       decoration: const BoxDecoration(color: Colors.transparent),
-      textStyle: getTextStyle(type: TextTypes.subtitle),
+      textStyle: getTextStyle(type: TextTypes.title),
       duration: duration,
     );
   }

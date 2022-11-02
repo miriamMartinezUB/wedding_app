@@ -18,7 +18,7 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: PaletteColors.primary,
+        color: PaletteColors.secondary,
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(
             Dimens.radiusLarge,
@@ -34,23 +34,18 @@ class Header extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Divider(color: PaletteColors.primary, thickness: 2),
             AppText(
               title,
               type: TextTypes.titleMedium,
               align: TextAlign.center,
-            ),
-            const SizedBox(
-              height: Dimens.paddingMedium,
-            ),
-            AppText(
-              subtitle,
-              type: TextTypes.body,
-              align: TextAlign.center,
+              // color: PaletteColors.textSubtitle,
             ),
             const SizedBox(
               height: Dimens.paddingLarge,
             ),
             CountDown.wedding(),
+            const Divider(color: PaletteColors.primary, thickness: 2),
           ],
         ),
       ),

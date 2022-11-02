@@ -41,7 +41,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   get_it: ^7.2.0
 #  flutter_local_notifications: ^9.9.1
-#  push_notification: ^1.1.1
+  firebase_messaging: ^14.0.3
+  firebase_core: ^2.1.1
   url_launcher: ^6.1.6
   flutter_translate: ^4.0.3
   shared_preferences: ^2.0.15

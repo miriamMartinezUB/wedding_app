@@ -1,9 +1,9 @@
 {
-  "app_name": "Judit and Cristian's wedding",
+  "app_name": "Judit & Cristian",
   "welcome": "Welcome!",
-  "app_description": "Here you will find information about the wedding of Judit & Cristian",
-  "app_introduction": "In this application you will be able to indicate your type of diet, indicate if you have any allergies and other necessary information for the big celebration.",
-  "errors_not_implemented_app_text": "Unfortunately, this application is not ready yet, but in a blink of an eye you will receive a notification to update it and be able to access all its features.",
+  "app_description": "Here you will find all the information about Judit & Cristian's wedding",
+  "app_introduction": "In this application you will be able to indicate your diet, indicate if you have any allergies and other necessary information for the big celebration.",
+  "errors_not_implemented_app_text": "Unfortunately, this application is not ready yet, but you will receive a notification to update and access to all its features.",
   "errors_not_implemented_app_good_bye": "We look forward to seeing you soon!",
   "update_ready": "Our application is ready!",
   "update_ready_text": "You just need to update it, click on the button below and you will be able to access all the functionalities.",
@@ -11,7 +11,7 @@
   "wedding_time_remaining": "Remaining time for the wedding:",
   "common_save": "Save",
   "task_add_people_title": "Add companions",
-  "task_add_people_subtitle": "Only accompanying persons who have not registered",
+  "task_add_people_subtitle": "Unregistered accompanying persons only",
   "task_add_intolerances_title": "Add intolerances and select diet",
   "task_add_bus_interested_title": "Interested in the bus",
   "task_subscribe_photos_title": "Subscribe to photos"

@@ -6,12 +6,12 @@ class PaletteColors {
   static const Color secondary = Color(0xFFEAD8D7);
   static const Color text = Colors.black;
   static const Color textSubtitle = Colors.black54;
-  static const Color card = Color(0xFFA2A4A4);
-  static const Color bottomNavigationBackground = Color(0xFFA2A4A4);
+  static const Color card = Colors.white60;
+  static const Color bottomNavigationBackground = secondary;
   static const Color bottomNavigationUnselectedItems = Colors.black54;
   static const Color bottomNavigationSelectedItems = Colors.black;
   static const Color shadow = Color(0xFFC4C6C5);
-  static const Color done = Colors.green;
+  static const Color done = primary;
   static const Color pending = Color(0xFFC4C6C5);
   static const Color disabled = Color(0xFFA2A4A4);
 }
