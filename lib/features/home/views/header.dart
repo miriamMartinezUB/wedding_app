@@ -34,7 +34,6 @@ class Header extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Divider(color: PaletteColors.primary, thickness: 2),
             AppText(
               title,
               type: TextTypes.titleMedium,
@@ -45,7 +44,6 @@ class Header extends StatelessWidget {
               height: Dimens.paddingLarge,
             ),
             CountDown.wedding(),
-            const Divider(color: PaletteColors.primary, thickness: 2),
           ],
         ),
       ),
