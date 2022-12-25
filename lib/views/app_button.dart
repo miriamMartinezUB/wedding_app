@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
 import 'package:wedding_jc/views/text.dart';
@@ -29,7 +28,7 @@ class AppButton extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(Dimens.paddingLarge),
           child: AppText(
-            translate('update_button'),
+            text,
             type: TextTypes.body,
             align: TextAlign.center,
           ),

@@ -10,3 +10,9 @@ class HomeDoneTaskEvent extends HomeEvent {
 
   HomeDoneTaskEvent({required this.taskId});
 }
+
+class HomeLaunchLinkEvent extends HomeEvent {
+  final String link;
+
+  HomeLaunchLinkEvent({required this.link});
+}

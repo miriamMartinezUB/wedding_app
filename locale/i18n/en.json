@@ -14,5 +14,10 @@
   "task_add_people_subtitle": "Unregistered accompanying persons only",
   "task_add_intolerances_title": "Add intolerances and select diet",
   "task_add_bus_interested_title": "Interested in the bus",
-  "task_subscribe_photos_title": "Subscribe to photos"
+  "task_subscribe_photos_title": "Subscribe to photos",
+  "sign_up": "Sign up with Google",
+  "sign_out": "Sign out",
+  "delete_account": "Delete Account",
+  "home": "Home",
+  "information": "Information"
 }

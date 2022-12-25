@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wedding_jc/data/database.dart';
 import 'package:wedding_jc/domain/task.dart';
 import 'package:wedding_jc/features/home/home_storage.dart';
@@ -26,6 +29,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         tasks: _database.tasks,
         doneTasksIds: doneTasksIds,
       ));
+    });
+    on<HomeLaunchLinkEvent>((event, emit) async {
+      try {
+        launchUrlString(event.link);
+      } catch (e) {
+        log(e.toString());
+      }
     });
   }
 }
