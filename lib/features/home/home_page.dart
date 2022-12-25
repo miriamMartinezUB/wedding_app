@@ -9,6 +9,8 @@ import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 import 'package:wedding_jc/resources/dimens.dart';
+import 'package:wedding_jc/resources/palette_colors.dart';
+import 'package:wedding_jc/views/app_drawer.dart';
 import 'package:wedding_jc/views/check.dart';
 import 'package:wedding_jc/views/shadow_card.dart';
 import 'package:wedding_jc/views/spinner.dart';
@@ -20,13 +22,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
+      appBar: AppBar(
+        backgroundColor: PaletteColors.secondary,
+        iconTheme: const IconThemeData(color: PaletteColors.textSubtitle),
+        shadowColor: Colors.transparent,
+      ),
       body: SafeArea(
         child: BlocProvider(
           create: (context) => HomeBloc(),
           child: BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
+              final HomeBloc homeBloc = BlocProvider.of<HomeBloc>(context);
               if (state is HomeLoadingState) {
-                BlocProvider.of<HomeBloc>(context).add(HomeInitEvent());
+                homeBloc.add(HomeInitEvent());
                 return const Spinner(); //Add loader
               }
               state as HomeLoadState;
@@ -70,7 +79,7 @@ class HomePage extends StatelessWidget {
                                   trailing: const Icon(Icons.arrow_forward_ios),
                                   onTap: () {
                                     if (task is TaskLink) {
-                                      BlocProvider.of<HomeBloc>(context).add(HomeDoneTaskEvent(taskId: task.id));
+                                      homeBloc.add(HomeLaunchLinkEvent(link: task.link));
                                     } else if (task is TaskPage) {
                                       BlocProvider.of<NavigatorBloc>(context).add(
                                         PushScreenNavigationEvent(
@@ -84,6 +93,7 @@ class HomePage extends StatelessWidget {
                                         ),
                                       );
                                     }
+                                    homeBloc.add(HomeDoneTaskEvent(taskId: task.id));
                                   },
                                 ),
                               ),

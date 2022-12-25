@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_translate/flutter_translate.dart';
-import 'package:wedding_jc/features/main_flow/bloc/main_flow_bloc.dart';
+import 'package:wedding_jc/features/sign_up/bloc/sign_up_bloc.dart';
+import 'package:wedding_jc/infrastructure/auth/auth_service.dart';
 import 'package:wedding_jc/infrastructure/language/language_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
@@ -19,6 +20,8 @@ void main() async {
 
   final delegate = await locator<LanguageService>().initDelegate();
 
+  await locator<AuthService>().initialize();
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -32,15 +35,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LanguageService languageService = locator<LanguageService>();
+    final LanguageService languageService = locator<LanguageService>();
 
     return MultiBlocProvider(
       providers: [
         BlocProvider<NavigatorBloc>(
           create: (context) => NavigatorBloc(0),
         ),
-        BlocProvider<MainFlowBloc>(
-          create: (context) => MainFlowBloc(),
+        BlocProvider<SignUpBloc>(
+          create: (context) => SignUpBloc(),
         ),
       ],
       child: MaterialApp(

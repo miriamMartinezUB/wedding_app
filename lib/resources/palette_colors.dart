@@ -6,6 +6,8 @@ class PaletteColors {
   static const Color secondary = Color(0xFFEAD8D7);
   static const Color text = Colors.black;
   static const Color textSubtitle = Colors.black54;
+  static const Color textLink = Colors.blueAccent;
+  static const Color textError = Color(0xFFB71C1C);
   static const Color card = Colors.white;
   static const Color bottomNavigationBackground = secondary;
   static const Color bottomNavigationUnselectedItems = Colors.black54;

@@ -33,7 +33,7 @@ class DataFiller {
       id: '21097897-4a55-45a8-a201-80999a17c03a',
       title: 'task_subscribe_photos_title',
       availableUntil: DateTime(2022, 12, 03),
-      link: '',
+      link: 'https://photos.app.goo.gl/zGTVX4hER9KP1vvv7',
     );
 
     database.setTasks([addPeople, addIntolerances, addBusInterested, subscribePhotos]);

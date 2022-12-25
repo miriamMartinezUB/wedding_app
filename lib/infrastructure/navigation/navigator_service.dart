@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wedding_jc/infrastructure/auth/auth_service.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/resources/routes.dart';
 
 class NavigationService {
@@ -18,10 +20,13 @@ class NavigationService {
     }
   }
 
-  Future<dynamic> goToInitialRoute() {
-    //if is logged ---
-    //if is ready to update----
-    //etc
-    return replace(Routes.notImplemented);
+  Future<dynamic> goToInitialRoute() async {
+    locator<AuthService>().isAuthenticated$.distinct().listen((isAuthenticated) {
+      if (isAuthenticated) {
+        replace(Routes.home);
+      } else {
+        replace(Routes.signUp);
+      }
+    });
   }
 }

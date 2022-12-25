@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_stylized_text/flutter_stylized_text.dart';
+import 'package:selectable_autolink_text/selectable_autolink_text.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
 
-enum TextTypes { title, titleMedium, subtitle, body, bodyMedium, smallBody, smallBodyMedium }
+enum TextTypes { title, titleMedium, subtitle, body, smallLink, bodyMedium, smallBody, smallBodyMedium }
 
-class AppText extends StatelessWidget {
+abstract class TextMother extends StatelessWidget {
   final String text;
-  final TextTypes type;
   final Color? color;
+  final TextTypes type;
   final TextAlign align;
 
-  const AppText(
+  const TextMother(
     this.text, {
-    Key? key,
-    this.type = TextTypes.body,
+    required this.type,
+    required this.align,
     this.color,
-    this.align = TextAlign.start,
+    Key? key,
   }) : super(key: key);
+}
+
+class AppText extends TextMother {
+  const AppText(
+    String text, {
+    TextTypes type = TextTypes.body,
+    TextAlign align = TextAlign.start,
+    Color? color,
+    Key? key,
+  }) : super(
+          text,
+          type: type,
+          align: align,
+          color: color,
+          key: key,
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +46,43 @@ class AppText extends StatelessWidget {
       textAlign: align,
       stylizedTextColor: PaletteColors.primary,
       color: color ?? _getColor(type: type),
+    );
+  }
+}
+
+class TextAutoLink extends TextMother {
+  const TextAutoLink(
+    String text, {
+    TextTypes type = TextTypes.smallLink,
+    TextAlign align = TextAlign.start,
+    Color? color,
+    Key? key,
+  }) : super(
+          text,
+          type: type,
+          align: align,
+          color: color,
+          key: key,
+        );
+
+  Future<void> _launchURL(String url) async {
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      throw (FlutterError('Invalid url'));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SelectableAutoLinkText(
+      text,
+      style: getTextStyle(type: type, color: color),
+      linkStyle: getTextStyle(type: type, color: color),
+      onTransformDisplayLink: AutoLinkUtils.shrinkUrl,
+      onTap: (url) async {
+        await _launchURL(url);
+      },
     );
   }
 }
@@ -44,21 +99,23 @@ TextStyle getTextStyle({
 }
 
 Color _getColor({TextTypes type = TextTypes.body}) {
-  if (type.toString().toLowerCase().contains('subtitle')) {
+  if (type.name.toLowerCase().contains('subtitle')) {
     return PaletteColors.textSubtitle;
+  } else if (type.name.toLowerCase().contains('link')) {
+    return PaletteColors.textLink;
   } else {
     return PaletteColors.text;
   }
 }
 
 double _getFontSize({TextTypes type = TextTypes.body}) {
-  if (type.toString().toLowerCase().contains('subtitle')) {
+  if (type.name.toLowerCase().contains('subtitle')) {
     return Dimens.textSizeSubtitle;
-  } else if (type.toString().toLowerCase().contains('title')) {
+  } else if (type.name.toLowerCase().contains('title')) {
     return Dimens.textSizeTitle;
-  } else if (type.toString().toLowerCase().contains('small')) {
+  } else if (type.name.toLowerCase().contains('small')) {
     return Dimens.textSizeBodySmall;
-  } else if (type.toString().toLowerCase().contains('tiny')) {
+  } else if (type.name.toLowerCase().contains('tiny')) {
     return Dimens.textSizeBodyTiny;
   } else {
     return Dimens.textSizeBody;
