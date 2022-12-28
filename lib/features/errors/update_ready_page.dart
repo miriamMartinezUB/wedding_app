@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wedding_jc/resources/dimens.dart';
-import 'package:wedding_jc/views/app_button.dart';
+import 'package:wedding_jc/views/buttons/app_button.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class UpdateReadyPage extends StatelessWidget {

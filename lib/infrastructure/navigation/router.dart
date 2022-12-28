@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wedding_jc/features/errors/not_implemented_page.dart';
 import 'package:wedding_jc/features/errors/update_ready_page.dart';
+import 'package:wedding_jc/features/form/form_builder_page.dart';
 import 'package:wedding_jc/features/home/home_page.dart';
 import 'package:wedding_jc/features/information/information_page.dart';
-import 'package:wedding_jc/features/persons/pages/add_persona_details_page.dart';
 import 'package:wedding_jc/features/persons/pages/persons.dart';
 import 'package:wedding_jc/features/sign_up/sign_up_page.dart';
 import 'package:wedding_jc/features/splash/splash_page.dart';
@@ -26,8 +26,9 @@ class WeddingRouter {
             description: args.description,
           ),
         );
-      case Routes.personaDetail:
-        return MaterialPageRoute(builder: (context) => const AddPersonaDetailPage());
+      case Routes.form:
+        ArgsFormBuilderPage args = settings.arguments as ArgsFormBuilderPage;
+        return MaterialPageRoute(builder: (context) => FormBuilderPage(form: args.form));
       case Routes.notImplemented:
         return MaterialPageRoute(builder: (context) => const NotImplementedPage());
       case Routes.updateReady:

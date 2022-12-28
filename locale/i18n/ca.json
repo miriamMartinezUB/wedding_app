@@ -2,11 +2,12 @@
   "app_name": "Judit + Cristian",
   "welcome": "Benvingut/da!",
   "app_description": "Aquí trobaràs la informació sobre la boda de na Judit i en Cristian.",
-  "app_introduction": "En aquesta aplicació podràs indicar el teu tipus de dieta, si en tens alguna al·lèrgia i altres dades necessàries per a la gran celebració.",
-  "errors_not_implemented_app_text": "Malauradament, aquesta aplicació encara no està llesta, però en un tancar i obrir d'ulls rebràs una notificació per actualitzar-la i poder accedir a totes les seves funcionalitats.",
+  "app_introduction": "En aquesta web podràs indicar el teu tipus de dieta, si en tens alguna al·lèrgia i altres dades necessàries per a la gran celebració.",
+  "errors_not_implemented_app_text": "Malauradament, aquesta web encara no està llesta, però en un tancar i obrir d'ulls rebràs un correu electrònic per poder accedir a totes les seves funcionalitats.",
   "errors_not_implemented_app_good_bye": "T'esperem d'aquí aviat.",
   "update_ready": "La nostra aplicació ja està llesta!",
   "update_ready_text": "Només cal actualitzar-la, fes clic al botó que trobaràs aquí sota i podràs accedir a totes les funcionalitats",
   "update_button": "Actualitza!",
-  "wedding_time_remaining": "Temps restant per la boda:"
+  "wedding_time_remaining": "Temps restant per la boda:",
+  "sign_up": "Inicia sessió amb Google"
 }

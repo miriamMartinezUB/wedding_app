@@ -1,78 +1,21 @@
-class Form {
+import 'package:wedding_jc/domain/question/question.dart';
+
+class AppForm {
+  final String id;
   final String name;
-  final List<Question> questions;
+  final List<Question>? questions;
+  final List<Question>? questionsByPerson;
 
-  Form({
+  AppForm({
+    required this.id,
     required this.name,
-    required this.questions,
-  });
-}
+    this.questions,
+    this.questionsByPerson,
+  }) : assert(questions != null || questionsByPerson != null);
 
-class Question {
-  final String title;
-  final String? subtitle;
-  final bool mandatory;
-  final bool visibility;
-
-  Question({
-    required this.title,
-    this.subtitle,
-    this.mandatory = true,
-    this.visibility = true,
-  });
-}
-
-class DateQuestion extends Question {
-  final DateTime date;
-
-  DateQuestion({
-    required this.date,
-    required String title,
-    String? subtitle,
-    bool mandatory = true,
-    bool visibility = true,
-  }) : super(
-          title: title,
-          subtitle: subtitle,
-          mandatory: mandatory,
-          visibility: visibility,
-        );
-}
-
-class SingleSelectionQuestion extends Question {
-  final List<String> values;
-  final String? selectedValue;
-
-  SingleSelectionQuestion({
-    required this.values,
-    required String title,
-    this.selectedValue,
-    String? subtitle,
-    bool mandatory = true,
-    bool visibility = true,
-  }) : super(
-          title: title,
-          subtitle: subtitle,
-          mandatory: mandatory,
-          visibility: visibility,
-        );
-}
-
-class FreeTextQuestion extends Question {
-  final String? hint;
-  final String? value;
-
-  FreeTextQuestion({
-    required String title,
-    this.value,
-    this.hint,
-    String? subtitle,
-    bool mandatory = true,
-    bool visibility = true,
-  }) : super(
-          title: title,
-          subtitle: subtitle,
-          mandatory: mandatory,
-          visibility: visibility,
-        );
+  AppForm copyWith({List<Question>? questions}) => AppForm(
+        id: id,
+        name: name,
+        questions: questions ?? this.questions,
+      );
 }

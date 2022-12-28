@@ -6,6 +6,6 @@ class Routes {
   static const String signUp = '/register';
   static const String home = '/home';
   static const String persons = '/persons';
-  static const String personaDetail = '/persona_detail';
+  static const String form = '/form';
   static const String information = '/information';
 }

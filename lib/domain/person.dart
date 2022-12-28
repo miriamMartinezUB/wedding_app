@@ -1,3 +1,5 @@
+import 'package:wedding_jc/resources/diets_menu_allergies_intolerances.dart';
+
 class Person {
   final String id;
   final String name;
@@ -25,11 +27,3 @@ class Person {
     this.busReturn,
   });
 }
-
-enum Intolerance { gluten, lactose, fructose, sucrose, sulfites, histamine }
-
-enum Allergy { seafood, fish, anisakis, nuts, pulses }
-
-enum Menu { infant, adult }
-
-enum Diet { omnivore, vegan, vegetarian }

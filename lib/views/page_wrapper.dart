@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
-import 'package:wedding_jc/views/home_button.dart';
+import 'package:wedding_jc/views/buttons/home_button.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class PageWrapper extends StatelessWidget {

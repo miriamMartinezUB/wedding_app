@@ -4,7 +4,7 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
-import 'package:wedding_jc/views/app_button.dart';
+import 'package:wedding_jc/views/buttons/app_button.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -26,6 +26,7 @@ class RegisterPage extends StatelessWidget {
                       horizontal: Dimens.paddingXLarge,
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         SizedBox(
                           height: Dimens.iconSizeBig,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_picker/PickerLocalizationsDelegate.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/features/sign_up/bloc/sign_up_bloc.dart';
 import 'package:wedding_jc/infrastructure/auth/auth_service.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Wedding Judit and Cristian',
         localizationsDelegates: [
+          PickerLocalizationsDelegate.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           languageService.getDelegate(context),

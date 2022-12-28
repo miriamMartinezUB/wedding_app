@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:wedding_jc/data/database.dart';
+import 'package:wedding_jc/features/form/form_builder_page.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
@@ -46,8 +48,14 @@ class PersonsPage extends StatelessWidget {
               leading: const Icon(Icons.add),
               title: translate('Add person'),
               onTap: () {
-                BlocProvider.of<NavigatorBloc>(context)
-                    .add(PushScreenNavigationEvent(model: NavigationModel(route: Routes.personaDetail)));
+                BlocProvider.of<NavigatorBloc>(context).add(
+                  PushScreenNavigationEvent(
+                    model: NavigationModel(
+                      route: Routes.form,
+                      arguments: ArgsFormBuilderPage(form: Database().addPersonsForm),
+                    ),
+                  ),
+                );
               },
             ),
             const SizedBox(height: Dimens.paddingMedium),
