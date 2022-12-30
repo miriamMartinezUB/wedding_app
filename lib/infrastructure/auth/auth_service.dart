@@ -1,28 +1,27 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:wedding_jc/domain/app_user.dart';
 import 'package:wedding_jc/infrastructure/auth/firebase_options.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
+import 'package:wedding_jc/infrastructure/storage/locale_storage_service.dart';
+import 'package:wedding_jc/resources/storage_keys.dart';
 
 class AuthService {
   late final FirebaseAuth _firebaseAuth;
+  late final LocaleStorageService _storageService;
 
   Future<void> initialize() async {
     await Firebase.initializeApp(
       options: defaultOptions,
     );
     _firebaseAuth = FirebaseAuth.instance;
+    _storageService = locator<LocaleStorageService>();
   }
 
   Stream<bool> get isAuthenticated$ => _firebaseAuth.idTokenChanges().map((User? user) => user != null);
-
-  bool get isAuthenticated {
-    bool isAuthenticated = false;
-    _firebaseAuth.idTokenChanges().listen((User? user) {
-      isAuthenticated = user != null;
-    });
-    return isAuthenticated;
-  }
 
   User? get user => _firebaseAuth.currentUser;
 
@@ -36,59 +35,31 @@ class AuthService {
     } catch (e) {
       log(e.toString());
     }
+    _saveAppUserFromUser(user!);
+
     return user;
   }
 
-  // Future<User?> signInWithGoogle() async {
-  //   final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-  //   if (googleUser == null) {
-  //     throw FlutterError('Error on try to signIn, we get null user');
-  //   }
-  //   final googleAuth = await googleUser.authentication;
-  //   final credential = GoogleAuthProvider.credential(
-  //     accessToken: googleAuth.accessToken,
-  //     idToken: googleAuth.idToken,
-  //   );
-  //   final authResult = await _firebaseAuth.signInWithCredential(credential);
-  //   return authResult.user;
-  // }
-
-  Future<void> login(String email, String password) async {
-    try {
-      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        log('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        log('Wrong password provided for that user.');
-      }
-    }
-  }
-
-  Future<void> logout() async => await _firebaseAuth.signOut();
-
-  Future<void> register(String email, String password) async {
-    try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        log('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        log('The account already exists for that email.');
-      }
-    } catch (e) {
-      log(e.toString());
-    }
-  }
-
-  Future<void> changePassword(String newPassword) async {
-    await user?.updatePassword(newPassword);
+  Future<void> logout() async {
+    _cleanAppUser();
+    await _firebaseAuth.signOut();
   }
 
   Future<void> deleteAccount() async {
+    _cleanAppUser();
     await user?.delete();
+  }
+
+  void _saveAppUserFromUser(User user) {
+    _storageService.saveEncryptString(StorageKeys.keyEncryptToken, user.refreshToken!);
+    _storageService.saveString(
+      StorageKeys.keyAppUser,
+      jsonEncode(AppUser(id: user.uid, name: user.displayName ?? '').toJson()),
+    );
+  }
+
+  void _cleanAppUser() {
+    _storageService.saveEncryptString(StorageKeys.keyEncryptToken, '');
+    _storageService.saveString(StorageKeys.keyAppUser, '');
   }
 }

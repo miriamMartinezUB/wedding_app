@@ -3,8 +3,10 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/resources/languages.dart';
 
 class LanguageService {
+  late LocalizationDelegate _delegate;
+
   Future<LocalizationDelegate> initDelegate() async {
-    return await LocalizationDelegate.create(
+    _delegate = await LocalizationDelegate.create(
       fallbackLocale: LanguageCode.byDefault,
       supportedLocales: [
         LanguageCode.catalan,
@@ -13,32 +15,28 @@ class LanguageService {
       ],
       basePath: 'locale/i18n',
     );
+    return _delegate;
   }
 
-  List<Locale> getSupportedLocales(BuildContext context) {
-    var delegate = LocalizedApp.of(context).delegate;
-    return delegate.supportedLocales;
+  List<Locale> get supportedLocales {
+    return _delegate.supportedLocales;
   }
 
-  LocalizationDelegate getDelegate(BuildContext context) {
-    var delegate = LocalizedApp.of(context).delegate;
-    return delegate;
+  LocalizationDelegate get delegate {
+    return _delegate;
   }
 
-  String getCurrentLanguageCode(BuildContext context) {
-    var delegate = LocalizedApp.of(context).delegate;
-    return delegate.currentLocale.languageCode;
+  String get currentLanguageCode {
+    return _delegate.currentLocale.languageCode;
   }
 
-  Locale getCurrentLocale(BuildContext context) {
-    var delegate = LocalizedApp.of(context).delegate;
-    return delegate.currentLocale;
+  Locale get currentLocale {
+    return _delegate.currentLocale;
   }
 
   String get defaultLocaleCode => LanguageCode.byDefault;
 
-  Future<void> changeCurrentLocale(BuildContext context, String languageCode) async {
-    var delegate = LocalizedApp.of(context).delegate;
-    await delegate.changeLocale(Locale(languageCode, ''));
+  Future<void> changeCurrentLocale(String languageCode) async {
+    await _delegate.changeLocale(Locale(languageCode, ''));
   }
 }

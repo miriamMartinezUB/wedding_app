@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_picker/PickerLocalizationsDelegate.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/features/sign_up/bloc/sign_up_bloc.dart';
-import 'package:wedding_jc/infrastructure/auth/auth_service.dart';
 import 'package:wedding_jc/infrastructure/language/language_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
@@ -19,9 +17,9 @@ void main() async {
 
   setupLocator();
 
-  final delegate = await locator<LanguageService>().initDelegate();
+  await initializeConfigurationServices();
 
-  await locator<AuthService>().initialize();
+  final delegate = locator<LanguageService>().delegate;
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -50,13 +48,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Wedding Judit and Cristian',
         localizationsDelegates: [
-          PickerLocalizationsDelegate.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
-          languageService.getDelegate(context),
+          languageService.delegate,
         ],
-        supportedLocales: languageService.getSupportedLocales(context),
-        locale: languageService.getCurrentLocale(context),
+        supportedLocales: languageService.supportedLocales,
+        locale: languageService.currentLocale,
         theme: ThemeData(
           backgroundColor: PaletteColors.background,
           primaryColor: PaletteColors.primary,

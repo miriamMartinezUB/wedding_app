@@ -1,17 +1,15 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
+import 'package:wedding_jc/infrastructure/storage/locale_storage_service.dart';
+import 'package:wedding_jc/resources/storage_keys.dart';
 
 class HomeStorage {
-  static const String _keyDoneTasks = 'wedding_done_tasks';
+  final LocaleStorageService localeStorageService = locator<LocaleStorageService>();
 
   Future<List<String>> get tasksDone async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getStringList(_keyDoneTasks) ?? [];
+    return localeStorageService.getStringList(StorageKeys.keyDoneTasks);
   }
 
   Future<void> markTaskAsDone({required String taskId}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> doneTasksIds = prefs.getStringList(_keyDoneTasks) ?? [];
-    doneTasksIds.add(taskId);
-    prefs.setStringList(_keyDoneTasks, doneTasksIds);
+    localeStorageService.addValueToStringList(StorageKeys.keyDoneTasks, taskId);
   }
 }

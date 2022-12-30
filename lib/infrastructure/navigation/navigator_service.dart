@@ -23,10 +23,9 @@ class NavigationService {
   Future<dynamic> goToInitialRoute() async {
     locator<AuthService>().isAuthenticated$.distinct().listen((isAuthenticated) {
       if (isAuthenticated) {
-        replace(Routes.notImplemented);
-      } else {
-        // replace(Routes.signUp);
         replace(Routes.home);
+      } else {
+        replace(Routes.signUp);
       }
     });
   }
