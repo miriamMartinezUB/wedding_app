@@ -11,11 +11,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final AuthService _firebaseAuthService = locator<AuthService>();
   SignUpBloc() : super(SignUpInitial()) {
     on<RegisterWithGoogleEvent>((event, emit) async {
+      emit(SignUpLoading());
       try {
         await _firebaseAuthService.signInWithGoogle();
       } catch (e) {
         log('sing in');
         log(e.toString());
+        emit(SignUpInitial());
       }
     });
   }

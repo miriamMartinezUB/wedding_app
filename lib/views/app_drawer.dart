@@ -121,7 +121,7 @@ class DrawerItem extends StatelessWidget {
           ListTile(
             title: AppText(
               translate(text),
-              type: TextTypes.title,
+              type: TextTypes.body,
               color: color,
             ),
             leading: Icon(
