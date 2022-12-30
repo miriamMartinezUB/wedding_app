@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/views/count_down.dart';
+import 'package:wedding_jc/views/page_wrapper.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class NotImplementedPage extends StatelessWidget {
@@ -9,8 +10,9 @@ class NotImplementedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return PageWrapper(
+      appBarName: 'Not implemented',
+      showBackButton: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(

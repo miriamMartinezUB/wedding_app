@@ -25,8 +25,7 @@ class NavigationService {
       if (isAuthenticated) {
         replace(Routes.home);
       } else {
-        replace(Routes.home);
-        // replace(Routes.signUp);
+        replace(Routes.signUp);
       }
     });
   }

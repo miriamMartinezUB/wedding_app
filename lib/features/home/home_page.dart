@@ -4,11 +4,11 @@ import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/domain/task.dart';
 import 'package:wedding_jc/features/home/bloc/home_bloc.dart';
 import 'package:wedding_jc/features/home/views/header.dart';
-import 'package:wedding_jc/features/persons/pages/persons.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 import 'package:wedding_jc/resources/dimens.dart';
+import 'package:wedding_jc/resources/routes.dart';
 import 'package:wedding_jc/views/check.dart';
 import 'package:wedding_jc/views/page_wrapper.dart';
 import 'package:wedding_jc/views/shadow_card.dart';
@@ -79,13 +79,7 @@ class HomePage extends StatelessWidget {
                                     } else if (task is TaskPage) {
                                       BlocProvider.of<NavigatorBloc>(context).add(
                                         PushScreenNavigationEvent(
-                                          model: NavigationModel(
-                                            route: task.routeName,
-                                            arguments: ArgsPersonsPage(
-                                              appBarName: translate(task.title),
-                                              description: task.subtitle == null ? null : translate(task.subtitle!),
-                                            ),
-                                          ),
+                                          model: NavigationModel(route: Routes.notImplemented),
                                         ),
                                       );
                                     }

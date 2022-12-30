@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
+import 'package:wedding_jc/infrastructure/auth/auth_service.dart';
+import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
@@ -14,6 +16,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthService authService = locator<AuthService>();
     return SafeArea(
       child: Drawer(
         backgroundColor: PaletteColors.background,
@@ -43,14 +46,18 @@ class AppDrawer extends StatelessWidget {
                     DrawerItem(
                       text: translate('sign_out'),
                       iconData: Icons.exit_to_app_outlined,
-                      destination: Routes.information,
                       color: PaletteColors.textError,
+                      onTap: () {
+                        authService.logout();
+                      },
                     ),
                     DrawerItem(
                       text: translate('delete_account'),
                       iconData: Icons.delete,
-                      destination: Routes.information,
                       color: PaletteColors.textError,
+                      onTap: () {
+                        authService.deleteAccount();
+                      },
                     ),
                   ],
                 ),
@@ -79,14 +86,16 @@ class DrawerItem extends StatelessWidget {
   final Function? onTap;
   final Color? color;
 
-  const DrawerItem({
+  DrawerItem({
     Key? key,
     required this.text,
     required this.iconData,
     this.destination,
     this.onTap,
     this.color,
-  }) : super(key: key);
+  }) : super(key: key) {
+    assert((destination != null && onTap == null) || (destination == null && onTap != null));
+  }
 
   @override
   Widget build(BuildContext context) {
