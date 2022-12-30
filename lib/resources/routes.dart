@@ -8,4 +8,5 @@ class Routes {
   static const String persons = '/persons';
   static const String form = '/form';
   static const String information = '/information';
+  static const String changeLanguage = '/change_language';
 }

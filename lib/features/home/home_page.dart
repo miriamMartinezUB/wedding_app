@@ -9,9 +9,8 @@ import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 import 'package:wedding_jc/resources/dimens.dart';
-import 'package:wedding_jc/resources/palette_colors.dart';
-import 'package:wedding_jc/views/app_drawer.dart';
 import 'package:wedding_jc/views/check.dart';
+import 'package:wedding_jc/views/page_wrapper.dart';
 import 'package:wedding_jc/views/shadow_card.dart';
 import 'package:wedding_jc/views/spinner.dart';
 import 'package:wedding_jc/views/text.dart';
@@ -21,13 +20,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const AppDrawer(),
-      appBar: AppBar(
-        backgroundColor: PaletteColors.secondary,
-        iconTheme: const IconThemeData(color: PaletteColors.textSubtitle),
-        shadowColor: Colors.transparent,
-      ),
+    return PageWrapper(
+      appBarName: translate('app_name'),
+      showDrawer: true,
+      canGoHome: false,
       body: SafeArea(
         child: BlocProvider(
           create: (context) => HomeBloc(),
@@ -43,8 +39,8 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Header(
-                      title: translate('app_name'),
-                      subtitle: translate('app_description'),
+                      title: translate('welcome'),
+                      subtitle: translate('wedding_time_remaining'),
                     ),
                     const SizedBox(
                       height: Dimens.paddingLarge,

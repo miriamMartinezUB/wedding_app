@@ -8,14 +8,18 @@ class LanguageService {
   Future<LocalizationDelegate> initDelegate() async {
     _delegate = await LocalizationDelegate.create(
       fallbackLocale: LanguageCode.byDefault,
-      supportedLocales: [
-        LanguageCode.catalan,
-        LanguageCode.spanish,
-        LanguageCode.english,
-      ],
+      supportedLocales: languageCodes,
       basePath: 'locale/i18n',
     );
     return _delegate;
+  }
+
+  List<String> get languageCodes {
+    return [
+      LanguageCode.catalan,
+      LanguageCode.spanish,
+      LanguageCode.english,
+    ];
   }
 
   List<Locale> get supportedLocales {
@@ -37,6 +41,8 @@ class LanguageService {
   String get defaultLocaleCode => LanguageCode.byDefault;
 
   Future<void> changeCurrentLocale(String languageCode) async {
-    await _delegate.changeLocale(Locale(languageCode, ''));
+    if (_delegate.currentLocale.languageCode != languageCode) {
+      await _delegate.changeLocale(Locale(languageCode, ''));
+    }
   }
 }

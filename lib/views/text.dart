@@ -5,7 +5,20 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
 
-enum TextTypes { title, titleMedium, subtitle, body, smallLink, bodyMedium, smallBody, smallBodyMedium }
+enum TextTypes {
+  title,
+  titleMedium,
+  titleBold,
+  subtitle,
+  body,
+  bodyMedium,
+  bodyBold,
+  smallLink,
+  smallBody,
+  smallBodyLight,
+  smallBodyMedium,
+  tinyBody,
+}
 
 abstract class TextMother extends StatelessWidget {
   final String text;
@@ -123,11 +136,11 @@ double _getFontSize({TextTypes type = TextTypes.body}) {
 }
 
 FontWeight _getFontWeight({TextTypes type = TextTypes.body}) {
-  if (type.toString().toLowerCase().contains('light')) {
+  if (type.name.toLowerCase().contains('light')) {
     return Dimens.fontWeightLight;
-  } else if (type.toString().toLowerCase().contains('medium')) {
+  } else if (type.name.toLowerCase().contains('medium')) {
     return Dimens.fontWeightMedium;
-  } else if (type.toString().toLowerCase().contains('bold')) {
+  } else if (type.name.toLowerCase().contains('bold')) {
     return Dimens.fontWeightBold;
   } else {
     return Dimens.fontWeightRegular;

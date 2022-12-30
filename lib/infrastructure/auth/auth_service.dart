@@ -21,7 +21,7 @@ class AuthService {
     _storageService = locator<LocaleStorageService>();
   }
 
-  Stream<bool> get isAuthenticated$ => _firebaseAuth.idTokenChanges().map((User? user) => user != null);
+  Stream<bool> get isAuthenticated$ => _firebaseAuth.idTokenChanges().distinct().map((User? user) => user != null);
 
   User? get user => _firebaseAuth.currentUser;
 

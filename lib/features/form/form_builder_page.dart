@@ -19,7 +19,7 @@ class FormBuilderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageWrapper(
       appBarName: form.name,
-      canGoHome: true,
+      showBackButton: true,
       body: _FormBuilder(
         questions: form.questions == null ? form.questionsByPerson! : form.questions!,
       ),

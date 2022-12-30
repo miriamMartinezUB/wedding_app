@@ -24,25 +24,30 @@ class AppDrawer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge),
                 child: Column(
-                  children: const [
+                  children: [
                     DrawerItem(
-                      text: 'home',
+                      text: translate('home'),
                       iconData: Icons.home,
                       destination: Routes.home,
                     ),
                     DrawerItem(
-                      text: 'information',
+                      text: translate('information'),
                       iconData: Icons.info,
                       destination: Routes.information,
                     ),
                     DrawerItem(
-                      text: 'sign_out',
+                      text: translate('change_language'),
+                      iconData: Icons.language_rounded,
+                      destination: Routes.changeLanguage,
+                    ),
+                    DrawerItem(
+                      text: translate('sign_out'),
                       iconData: Icons.exit_to_app_outlined,
                       destination: Routes.information,
                       color: PaletteColors.textError,
                     ),
                     DrawerItem(
-                      text: 'delete_account',
+                      text: translate('delete_account'),
                       iconData: Icons.delete,
                       destination: Routes.information,
                       color: PaletteColors.textError,

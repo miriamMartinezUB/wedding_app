@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wedding_jc/features/change_language/change_language_page.dart';
 import 'package:wedding_jc/features/errors/not_implemented_page.dart';
 import 'package:wedding_jc/features/errors/update_ready_page.dart';
 import 'package:wedding_jc/features/form/form_builder_page.dart';
@@ -33,6 +34,8 @@ class WeddingRouter {
         return MaterialPageRoute(builder: (context) => const NotImplementedPage());
       case Routes.updateReady:
         return MaterialPageRoute(builder: (context) => const UpdateReadyPage());
+      case Routes.changeLanguage:
+        return MaterialPageRoute(builder: (context) => const ChangeLanguagePage());
       default:
         return MaterialPageRoute(builder: (context) => const SplashPage());
     }

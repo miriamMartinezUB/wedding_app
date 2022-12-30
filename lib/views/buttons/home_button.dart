@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
+import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
 
 class HomeButton extends StatelessWidget {
@@ -12,7 +13,10 @@ class HomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: const Icon(Icons.home, color: PaletteColors.text),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimens.paddingLarge),
+        child: Icon(Icons.home, color: PaletteColors.icons),
+      ),
       onTap: () {
         BlocProvider.of<NavigatorBloc>(context).add(HomeNavigationEvent());
       },

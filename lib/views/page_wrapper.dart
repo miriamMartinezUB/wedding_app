@@ -3,28 +3,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
+import 'package:wedding_jc/views/app_drawer.dart';
 import 'package:wedding_jc/views/buttons/home_button.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class PageWrapper extends StatelessWidget {
   final String appBarName;
   final Widget body;
+  final bool showDrawer;
   final bool showBackButton;
-  final bool showHomeButton;
   final bool canGoBack;
   final bool canGoHome;
   final Function? onPop;
 
-  const PageWrapper({
+  PageWrapper({
     Key? key,
     required this.appBarName,
     required this.body,
-    this.showBackButton = true,
-    this.showHomeButton = false,
+    this.showDrawer = false,
+    this.showBackButton = false,
     this.canGoBack = true,
-    this.canGoHome = false,
+    this.canGoHome = true,
     this.onPop,
-  }) : super(key: key);
+  }) : super(key: key) {
+    assert(showBackButton != showDrawer);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +39,22 @@ class PageWrapper extends StatelessWidget {
         return canGoBack;
       },
       child: Scaffold(
+        drawer: showDrawer ? const AppDrawer() : null,
         appBar: AppBar(
           backgroundColor: PaletteColors.primary,
           centerTitle: true,
-          leading: InkWell(
-            child: const Icon(Icons.arrow_back_ios, color: PaletteColors.text),
-            onTap: () {
-              if (onPop != null) {
-                onPop!();
-              }
-              BlocProvider.of<NavigatorBloc>(context).add(BackNavigationEvent());
-            },
-          ),
+          iconTheme: const IconThemeData(color: PaletteColors.icons),
+          leading: showBackButton
+              ? InkWell(
+                  child: const Icon(Icons.arrow_back_ios, color: PaletteColors.icons),
+                  onTap: () {
+                    if (onPop != null) {
+                      onPop!();
+                    }
+                    BlocProvider.of<NavigatorBloc>(context).add(BackNavigationEvent());
+                  },
+                )
+              : null,
           actions: canGoHome ? [const HomeButton()] : null,
           title: AppText(
             appBarName,
