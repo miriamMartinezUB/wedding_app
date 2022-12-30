@@ -10,8 +10,12 @@ class NavigationService {
     return navigatorKey.currentState!.pushNamed(routeName, arguments: arguments);
   }
 
-  Future<dynamic> replace(String routeName) {
-    return navigatorKey.currentState!.pushNamedAndRemoveUntil(routeName, (Route<dynamic> route) => false);
+  Future<dynamic> replace(String routeName, {dynamic arguments}) {
+    return navigatorKey.currentState!.pushNamedAndRemoveUntil(
+      routeName,
+      (Route<dynamic> route) => false,
+      arguments: arguments,
+    );
   }
 
   void goBack({dynamic arguments}) {

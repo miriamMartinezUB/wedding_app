@@ -3,15 +3,15 @@ import 'package:wedding_jc/domain/question/question.dart';
 class AppForm {
   final String id;
   final String name;
-  final List<Question>? questions;
-  final List<Question>? questionsByPerson;
+  final List<Question> questions;
+  bool isByPerson;
 
   AppForm({
     required this.id,
     required this.name,
-    this.questions,
-    this.questionsByPerson,
-  }) : assert(questions != null || questionsByPerson != null);
+    required this.questions,
+    this.isByPerson = false,
+  });
 
   AppForm copyWith({List<Question>? questions}) => AppForm(
         id: id,

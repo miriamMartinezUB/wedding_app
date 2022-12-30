@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
+import 'package:wedding_jc/views/buttons/app_text_button.dart';
 import 'package:wedding_jc/views/text.dart';
 
 class ShowMyDialog {
@@ -8,8 +8,7 @@ class ShowMyDialog {
   final String text;
   final List<ContentAction>? actions;
 
-  static const Color _colorActions = PaletteColors.primary;
-  static const TextAlign _textAlignActions = TextAlign.end;
+  static const Color _colorActions = PaletteColors.text;
 
   ShowMyDialog({
     required this.title,
@@ -17,15 +16,15 @@ class ShowMyDialog {
     this.actions,
   });
 
-  show(BuildContext context) async {
+  Future<void> show(BuildContext context) async {
     late List<Widget> customActions;
     if (actions != null) {
-      customActions = getActions(actions!, _colorActions, _textAlignActions);
+      customActions = _getActions(actions!, _colorActions);
     }
 
     return showDialog<void>(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           title: title == null
@@ -34,44 +33,24 @@ class ShowMyDialog {
                   title!,
                   type: TextTypes.smallBodyMedium,
                 ),
-          content: SingleChildScrollView(
-            child: AppText(
-              text,
-              type: TextTypes.smallBody,
-            ),
+          content: AppText(
+            text,
+            type: TextTypes.smallBody,
           ),
-          actions: actions == null
-              ? <Widget>[
-                  TextButton(
-                    child: AppText(
-                      translate('accept'),
-                      type: TextTypes.bodyMedium,
-                      align: _textAlignActions,
-                      color: _colorActions,
-                    ),
-                    onPressed: () {
-                      // NavigationManager(context).back();
-                    },
-                  ),
-                ]
-              : customActions,
+          actions: customActions,
         );
       },
     );
   }
 
-  List<Widget> getActions(List<ContentAction> actions, Color colorActions, textAlignActions) {
+  List<Widget> _getActions(List<ContentAction> actions, Color colorActions) {
     List<Widget> result = [];
     for (ContentAction contentAction in actions) {
       result.add(
-        TextButton(
-          onPressed: contentAction.onPress,
-          child: AppText(
-            contentAction.textAction,
-            type: TextTypes.bodyMedium,
-            align: _textAlignActions,
-            color: _colorActions,
-          ),
+        AppTextButton(
+          text: contentAction.textAction,
+          onTap: contentAction.onPress,
+          color: contentAction.color ?? _colorActions,
         ),
       );
     }
@@ -81,7 +60,8 @@ class ShowMyDialog {
 
 class ContentAction {
   final String textAction;
+  final Color? color;
   final Function() onPress;
 
-  ContentAction({required this.textAction, required this.onPress});
+  ContentAction({required this.textAction, required this.onPress, this.color});
 }

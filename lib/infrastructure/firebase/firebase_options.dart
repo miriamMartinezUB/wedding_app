@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 const FirebaseOptions defaultOptions = FirebaseOptions(
   apiKey: "AIzaSyBCCHMV7Gx5OlrAWMdJbnLgiMgEmORdwYc",
   authDomain: "wedding-j-and-c.firebaseapp.com",
+  databaseURL: "https://wedding-j-and-c-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "wedding-j-and-c",
   storageBucket: "wedding-j-and-c.appspot.com",
   messagingSenderId: "947245210321",

@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:wedding_jc/domain/task.dart';
+import 'package:wedding_jc/features/form/form_builder_page.dart';
 import 'package:wedding_jc/features/home/bloc/home_bloc.dart';
-import 'package:wedding_jc/features/home/views/header.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 import 'package:wedding_jc/resources/dimens.dart';
-import 'package:wedding_jc/resources/routes.dart';
+import 'package:wedding_jc/resources/palette_colors.dart';
 import 'package:wedding_jc/views/check.dart';
+import 'package:wedding_jc/views/count_down.dart';
+import 'package:wedding_jc/views/expand_image_with_blur_background.dart';
 import 'package:wedding_jc/views/page_wrapper.dart';
 import 'package:wedding_jc/views/shadow_card.dart';
 import 'package:wedding_jc/views/spinner.dart';
@@ -38,15 +40,46 @@ class HomePage extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Header(
-                      title: translate('welcome'),
-                      subtitle: translate('wedding_time_remaining'),
+                    const ExpandImageWithBlurBackground(
+                        height: 250, imagePath: 'assets/images/judit_and_cristian.jpeg'),
+                    Container(
+                      color: PaletteColors.secondary,
+                      width: double.infinity,
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: Dimens.paddingXLarge,
+                          ),
+                          AppText(
+                            translate('welcome'),
+                            type: TextTypes.titleMedium,
+                            align: TextAlign.center,
+                            // color: PaletteColors.textSubtitle,
+                          ),
+                          const SizedBox(
+                            height: Dimens.paddingLarge,
+                          ),
+                          AppText(
+                            translate('wedding_time_remaining'),
+                            type: TextTypes.body,
+                            align: TextAlign.center,
+                            // color: PaletteColors.textSubtitle,
+                          ),
+                          const SizedBox(
+                            height: Dimens.paddingMedium,
+                          ),
+                          CountDown.wedding(),
+                          const SizedBox(
+                            height: Dimens.paddingLarge,
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: Dimens.paddingLarge,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: Dimens.paddingLarge),
+                      padding: const EdgeInsets.all(Dimens.paddingLarge),
                       child: AppText(
                         translate('app_description'),
                         type: TextTypes.body,
@@ -73,17 +106,29 @@ class HomePage extends StatelessWidget {
                                   title: task.title,
                                   subtitle: task.subtitle,
                                   trailing: const Icon(Icons.arrow_forward_ios),
-                                  onTap: () {
+                                  onTap: () async {
                                     if (task is TaskLink) {
                                       homeBloc.add(HomeLaunchLinkEvent(link: task.link));
                                     } else if (task is TaskPage) {
                                       BlocProvider.of<NavigatorBloc>(context).add(
                                         PushScreenNavigationEvent(
-                                          model: NavigationModel(route: Routes.notImplemented),
+                                          model: NavigationModel(
+                                            route: task.routeName,
+                                          ),
+                                        ),
+                                      );
+                                    } else if (task is TaskForm) {
+                                      BlocProvider.of<NavigatorBloc>(context).add(
+                                        PushScreenNavigationEvent(
+                                          model: NavigationModel(
+                                              route: task.routeName,
+                                              arguments: ArgsFormBuilderPage(
+                                                formId: task.formId,
+                                                addValues: true,
+                                              )),
                                         ),
                                       );
                                     }
-                                    homeBloc.add(HomeDoneTaskEvent(taskId: task.id));
                                   },
                                 ),
                               ),

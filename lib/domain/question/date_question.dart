@@ -1,12 +1,12 @@
 import 'package:wedding_jc/domain/question/question.dart';
 
 class DateQuestion extends Question {
-  final DateTime? date;
+  final String? date;
 
   DateQuestion({
-    this.date,
     required String title,
     required String id,
+    this.date,
     String? subtitle,
     bool mandatory = true,
   }) : super(
@@ -16,10 +16,10 @@ class DateQuestion extends Question {
           mandatory: mandatory,
         );
 
-  DateQuestion copyWith({DateTime? date}) => DateQuestion(
+  DateQuestion copyWith({String? date}) => DateQuestion(
         id: id,
         title: title,
-        date: date,
+        date: date ?? this.date,
         subtitle: subtitle,
         mandatory: mandatory,
       );

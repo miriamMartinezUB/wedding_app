@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:wedding_jc/features/information/views/app_list_tile.dart';
 import 'package:wedding_jc/resources/dimens.dart';

@@ -1,12 +1,11 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:wedding_jc/domain/app_user.dart';
-import 'package:wedding_jc/infrastructure/auth/firebase_options.dart';
+import 'package:wedding_jc/domain/person.dart';
+import 'package:wedding_jc/infrastructure/firebase/firebase_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/storage/locale_storage_service.dart';
+import 'package:wedding_jc/infrastructure/storage/remote/person_storage.dart';
 import 'package:wedding_jc/resources/storage_keys.dart';
 
 class AuthService {
@@ -14,10 +13,7 @@ class AuthService {
   late final LocaleStorageService _storageService;
 
   Future<void> initialize() async {
-    await Firebase.initializeApp(
-      options: defaultOptions,
-    );
-    _firebaseAuth = FirebaseAuth.instance;
+    _firebaseAuth = locator<FirebaseService>().firebaseAuth;
     _storageService = locator<LocaleStorageService>();
   }
 
@@ -52,14 +48,18 @@ class AuthService {
 
   void _saveAppUserFromUser(User user) {
     _storageService.saveEncryptString(StorageKeys.keyEncryptToken, user.refreshToken!);
-    _storageService.saveString(
-      StorageKeys.keyAppUser,
-      jsonEncode(AppUser(id: user.uid, name: user.displayName ?? '').toJson()),
+
+    PersonStorage().add(
+      Person(
+        id: user.uid,
+        name: (user.displayName ?? '').split(' ').first,
+        surnames: (user.displayName ?? '').split(' ').last,
+        addedBy: user.uid,
+      ),
     );
   }
 
   void _cleanAppUser() {
     _storageService.saveEncryptString(StorageKeys.keyEncryptToken, '');
-    _storageService.saveString(StorageKeys.keyAppUser, '');
   }
 }

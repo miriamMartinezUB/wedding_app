@@ -6,7 +6,7 @@ extension DietsValues on Diet {
   }
 }
 
-enum Intolerance { gluten, lactose, fructose, sucrose, sulfites }
+enum Intolerance { gluten, lactose }
 
 extension IntolerancesValues on Intolerance {
   String get title {
@@ -14,7 +14,7 @@ extension IntolerancesValues on Intolerance {
   }
 }
 
-enum Allergy { seafood, fish, anisakis, nuts, pulses }
+enum Allergy { seafood, fish, nuts }
 
 extension AllergyValues on Allergy {
   String get title {
@@ -22,7 +22,7 @@ extension AllergyValues on Allergy {
   }
 }
 
-enum Menu { infant, adult }
+enum Menu { adult, infant }
 
 extension MenuValues on Menu {
   String get title {

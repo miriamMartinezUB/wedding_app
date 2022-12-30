@@ -30,18 +30,28 @@ class AppDrawer extends StatelessWidget {
                   children: [
                     DrawerItem(
                       text: translate('home'),
-                      iconData: Icons.home,
+                      iconData: Icons.home_outlined,
                       destination: Routes.home,
                     ),
                     DrawerItem(
                       text: translate('information'),
-                      iconData: Icons.info,
+                      iconData: Icons.info_outline_rounded,
                       destination: Routes.information,
                     ),
                     DrawerItem(
                       text: translate('change_language'),
                       iconData: Icons.language_rounded,
                       destination: Routes.changeLanguage,
+                    ),
+                    DrawerItem(
+                      text: translate('bank_account_title'),
+                      iconData: Icons.card_giftcard,
+                      destination: '',
+                    ),
+                    DrawerItem(
+                      text: 'Invitación',
+                      iconData: Icons.document_scanner_outlined,
+                      destination: '',
                     ),
                     DrawerItem(
                       text: translate('sign_out'),
@@ -53,7 +63,7 @@ class AppDrawer extends StatelessWidget {
                     ),
                     DrawerItem(
                       text: translate('delete_account'),
-                      iconData: Icons.delete,
+                      iconData: Icons.delete_outline_rounded,
                       color: PaletteColors.textError,
                       onTap: () {
                         authService.deleteAccount();
@@ -63,15 +73,15 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge),
-              child: SizedBox(
-                height: Dimens.iconSizeMedium,
-                child: Center(
-                  child: Image.asset('assets/images/logo.jpeg'),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge),
+            //   child: SizedBox(
+            //     height: Dimens.iconSizeMedium,
+            //     child: Center(
+            //       child: Image.asset('assets/images/logo.jpeg'),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -121,7 +131,7 @@ class DrawerItem extends StatelessWidget {
           ListTile(
             title: AppText(
               translate(text),
-              type: TextTypes.title,
+              type: TextTypes.body,
               color: color,
             ),
             leading: Icon(

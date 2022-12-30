@@ -3,6 +3,7 @@ import 'package:wedding_jc/domain/form.dart';
 import 'package:wedding_jc/domain/question/index.dart';
 import 'package:wedding_jc/domain/task.dart';
 import 'package:wedding_jc/resources/diets_menu_allergies_intolerances.dart';
+import 'package:wedding_jc/resources/form_ids.dart';
 import 'package:wedding_jc/resources/routes.dart';
 
 class DataFiller {
@@ -14,7 +15,7 @@ class DataFiller {
     ///Adding forms
 
     AppForm addPersonForm = AppForm(
-      id: '8bc3d582-d8a1-4102-81a1-36387f662f6a',
+      id: FormIds.personFormId,
       name: 'add_person_form_name',
       questions: [
         FreeTextQuestion(
@@ -35,25 +36,28 @@ class DataFiller {
     database.setAddPerson(addPersonForm);
 
     AppForm addDietAndIntolerancesForm = AppForm(
-      id: 'b55ce4a9-1a54-42c7-a5c0-ca80b8d8cbab',
+      id: FormIds.dietAndIntolerancesFormId,
       name: 'add_diet_and_intolerances_form_name',
-      questionsByPerson: [
+      isByPerson: true,
+      questions: [
         SingleSelectionQuestion(
           values: Diet.values.map((diet) => diet.title).toList(),
           title: 'add_diet_and_intolerances_question_diet',
+          initialSelectedValue: Diet.regular.title,
           id: '032ed928-59af-451f-9036-edd670fdda5c',
         ),
         SingleSelectionQuestion(
           values: Menu.values.map((menu) => menu.title).toList(),
+          initialSelectedValue: Menu.adult.title,
           title: 'add_diet_and_intolerances_question_menu',
           id: 'd14e8db2-eeed-4eed-814f-40d8c81eb4df',
         ),
-        SingleSelectionQuestion(
+        CheckBoxQuestion(
           values: Intolerance.values.map((intolerance) => intolerance.title).toList(),
           title: 'add_diet_and_intolerances_question_intolerances',
           id: 'af5819f5-edde-4099-b9d6-8351b786be55',
         ),
-        SingleSelectionQuestion(
+        CheckBoxQuestion(
           values: Allergy.values.map((allergy) => allergy.title).toList(),
           title: 'add_diet_and_intolerances_question_allergy',
           id: '0a4a0026-c9bb-42fb-b667-73649f1f0b38',
@@ -75,7 +79,7 @@ class DataFiller {
     database.setAddDietAndIntolerances(addDietAndIntolerancesForm);
 
     AppForm interestedBusForm = AppForm(
-      id: 'b8e831a4-d036-4117-b277-d7eb1f9b6712',
+      id: FormIds.interestedBusFormId,
       name: 'interested_bus_form_name',
       questions: [
         CheckBoxQuestion(
@@ -88,7 +92,7 @@ class DataFiller {
     database.setInterestedInBus(interestedBusForm);
 
     AppForm interestedHotelForm = AppForm(
-      id: '2af90657-3255-4faf-b5cc-f88c3f05cd87',
+      id: FormIds.interestedHotelFormId,
       name: 'interested_hotel_form_name',
       questions: [
         CheckBoxQuestion(
@@ -113,21 +117,23 @@ class DataFiller {
       id: '37ae81ee-d2cc-41bb-9007-70b45a5b11f4',
       title: 'task_add_intolerances_title',
       availableUntil: DateTime(2022, 12, 03),
-      routeName: '',
+      routeName: Routes.notImplemented,
     );
 
-    Task addBusInterestedTask = TaskPage(
+    Task addBusInterestedTask = TaskForm(
       id: '1940c194-ae5c-47c1-af23-71f346ce691e',
+      formId: FormIds.interestedBusFormId,
       title: 'task_add_bus_interested_title',
       availableUntil: DateTime(2022, 12, 03),
-      routeName: '',
+      routeName: Routes.form,
     );
 
-    Task addHotelInterestedTask = TaskPage(
+    Task addHotelInterestedTask = TaskForm(
       id: 'b3a6f968-2538-42ca-83a9-0b6358d7ad98',
+      formId: FormIds.interestedHotelFormId,
       title: 'task_add_hotel_interested_title',
       availableUntil: DateTime(2022, 12, 03),
-      routeName: '',
+      routeName: Routes.form,
     );
 
     Task subscribePhotosTask = TaskLink(

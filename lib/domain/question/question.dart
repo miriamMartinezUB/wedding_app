@@ -1,4 +1,4 @@
-class Question {
+abstract class Question {
   final String id;
   final String title;
   final String? subtitle;

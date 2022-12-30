@@ -29,6 +29,25 @@ class TaskPage extends Task {
         );
 }
 
+class TaskForm extends Task {
+  final String routeName;
+  final String formId;
+
+  TaskForm({
+    required this.routeName,
+    required this.formId,
+    required String id,
+    required String title,
+    required DateTime availableUntil,
+    String? subtitle,
+  }) : super(
+          id: id,
+          title: title,
+          availableUntil: availableUntil,
+          subtitle: subtitle,
+        );
+}
+
 class TaskLink extends Task {
   final String link;
 

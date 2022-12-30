@@ -15,6 +15,7 @@ class PageWrapper extends StatelessWidget {
   final bool canGoBack;
   final bool canGoHome;
   final Function? onPop;
+  final Color? backgroundColor;
 
   PageWrapper({
     Key? key,
@@ -25,6 +26,7 @@ class PageWrapper extends StatelessWidget {
     this.canGoBack = true,
     this.canGoHome = true,
     this.onPop,
+    this.backgroundColor,
   }) : super(key: key) {
     assert(showBackButton != showDrawer);
   }
@@ -33,9 +35,7 @@ class PageWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (onPop != null) {
-          onPop!();
-        }
+        onPop?.call();
         return canGoBack;
       },
       child: Scaffold(
@@ -48,10 +48,10 @@ class PageWrapper extends StatelessWidget {
               ? InkWell(
                   child: const Icon(Icons.arrow_back_ios, color: PaletteColors.icons),
                   onTap: () {
-                    if (onPop != null) {
-                      onPop!();
+                    if (onPop == null) {
+                      BlocProvider.of<NavigatorBloc>(context).add(BackNavigationEvent());
                     }
-                    BlocProvider.of<NavigatorBloc>(context).add(BackNavigationEvent());
+                    onPop?.call();
                   },
                 )
               : null,

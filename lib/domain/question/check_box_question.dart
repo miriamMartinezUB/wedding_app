@@ -1,14 +1,14 @@
 import 'package:wedding_jc/domain/question/question.dart';
 
 class CheckBoxQuestion extends Question {
-  final List<dynamic>? values;
-  final dynamic initialSelectedValue;
+  final List<String>? values;
+  final List<String>? initialSelectedValues;
 
   CheckBoxQuestion({
     required String title,
     required String id,
     this.values,
-    this.initialSelectedValue,
+    this.initialSelectedValues,
     String? subtitle,
     bool mandatory = true,
   }) : super(
@@ -19,14 +19,14 @@ class CheckBoxQuestion extends Question {
         );
 
   CheckBoxQuestion copyWith({
-    List<dynamic>? values,
-    dynamic initialSelectedValue,
+    List<String>? initialSelectedValues,
+    List<String>? values,
   }) =>
       CheckBoxQuestion(
         id: id,
         title: title,
         values: values ?? this.values,
-        initialSelectedValue: initialSelectedValue ?? this.initialSelectedValue,
+        initialSelectedValues: initialSelectedValues ?? this.initialSelectedValues,
         subtitle: subtitle,
         mandatory: mandatory,
       );
