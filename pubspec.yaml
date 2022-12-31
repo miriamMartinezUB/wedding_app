@@ -51,6 +51,7 @@ dependencies:
   flutter_picker: ^2.0.5
   cloud_firestore: ^4.3.1
   flutter_secure_storage: ^7.0.1
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:

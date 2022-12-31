@@ -27,7 +27,34 @@ class Person {
     this.hotel,
   });
 
-   String get displayName=> name + ' '+surnames;
+  String get displayName => '$name $surnames';
+
+  Person copyWith({
+    String? name,
+    String? surnames,
+    String? birthday,
+    List<String>? intolerances,
+    List<String>? allergies,
+    String? typeMenu,
+    String? typeDiet,
+    String? addedBy,
+    bool? bus,
+    bool? hotel,
+  }) {
+    return Person(
+      id: id,
+      name: name ?? this.name,
+      surnames: surnames ?? this.surnames,
+      hotel: hotel ?? this.hotel,
+      bus: bus ?? this.bus,
+      birthday: birthday ?? this.birthday,
+      allergies: allergies ?? this.allergies,
+      intolerances: intolerances ?? this.intolerances,
+      typeDiet: typeDiet ?? this.typeDiet,
+      typeMenu: typeMenu ?? this.typeMenu,
+      addedBy: addedBy ?? this.addedBy,
+    );
+  }
 
   factory Person.fromDoc(DocumentSnapshot doc) {
     return Person(

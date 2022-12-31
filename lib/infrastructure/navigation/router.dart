@@ -30,6 +30,8 @@ class WeddingRouter {
             formId: args.formId,
             personId: args.personId,
             addValues: args.addValues,
+            newPerson: args.newPerson,
+            onSave: args.onSave,
           ),
         );
       case Routes.notImplemented:
