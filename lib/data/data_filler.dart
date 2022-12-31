@@ -53,7 +53,9 @@ class DataFiller {
           id: 'd14e8db2-eeed-4eed-814f-40d8c81eb4df',
         ),
         CheckBoxQuestion(
-          values: Intolerance.values.map((intolerance) => intolerance.title).toList(),
+          values: Intolerance.values
+              .map((intolerance) => intolerance.title)
+              .toList(),
           title: 'add_diet_and_intolerances_question_intolerances',
           id: 'af5819f5-edde-4099-b9d6-8351b786be55',
         ),
@@ -117,7 +119,7 @@ class DataFiller {
       id: '37ae81ee-d2cc-41bb-9007-70b45a5b11f4',
       title: 'task_add_intolerances_title',
       availableUntil: DateTime(2022, 12, 03),
-      routeName: Routes.notImplemented,
+      routeName: Routes.dietAndIntolerances,
     );
 
     Task addBusInterestedTask = TaskForm(

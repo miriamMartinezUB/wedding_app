@@ -5,7 +5,7 @@ import 'package:wedding_jc/data/database.dart';
 import 'package:wedding_jc/domain/form.dart';
 import 'package:wedding_jc/domain/person.dart';
 import 'package:wedding_jc/domain/question/index.dart';
-import 'package:wedding_jc/infrastructure/storage/remote/remote_storageInterface.dart';
+import 'package:wedding_jc/infrastructure/storage/remote/remote_storage_interface.dart';
 import 'package:wedding_jc/resources/form_ids.dart';
 
 class PersonStorage extends RemoteStorageInterface<Person> {
@@ -16,7 +16,11 @@ class PersonStorage extends RemoteStorageInterface<Person> {
     try {
       bool notExist = (await all).where((element) => element.id == t.id).toList().isEmpty;
       if (notExist) {
-        await collectionRef.add(t.toJson());
+        if (t.addedBy == null) {
+          await collectionRef.doc(t.id).set(t.copyWith(addedBy: userId).toJson());
+        } else {
+          await collectionRef.doc(t.id).set(t.toJson());
+        }
         log('Persona added');
       }
       log('Persona already added');
@@ -35,7 +39,7 @@ class PersonStorage extends RemoteStorageInterface<Person> {
   @override
   Future<List<Person>> get all async {
     final snapshot = await collectionRef.snapshots().first;
-    final List<QueryDocumentSnapshot> docs = snapshot.docs;
+    final List<QueryDocumentSnapshot> docs = snapshot.docs.where((element) => element['addedBy'] == userId).toList();
     List<Person> persons = [];
     for (final QueryDocumentSnapshot doc in docs) {
       persons.add(Person.fromDoc(doc));
@@ -52,7 +56,7 @@ class PersonStorage extends RemoteStorageInterface<Person> {
   Stream<List<Person>> get all$ => collectionRef.snapshots().distinct().map(
         (event) {
           List<Person> persons = [];
-          final List<QueryDocumentSnapshot> docs = event.docs;
+          final List<QueryDocumentSnapshot> docs = event.docs.where((element) => element['addedBy'] == userId).toList();
           for (final QueryDocumentSnapshot doc in docs) {
             persons.add(Person.fromDoc(doc));
           }
@@ -61,14 +65,23 @@ class PersonStorage extends RemoteStorageInterface<Person> {
       );
 
   @override
-  Future<void> update(String id, Map<String, dynamic> fields) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(Person t) async {
+    DocumentReference doc = collectionRef.doc(t.id);
+    try {
+      await doc.update(t.toJson());
+      log('Persona updated');
+    } catch (e) {
+      log('Persona fail when try to update');
+      log(e.toString());
+    }
   }
 
-  Future<AppForm> getFormFromIdAndPersonaId(String formId, String? personaId) async {
+  Future<AppForm> getFormFromIdAndPersonaId(String formId, String? personaId, {bool addValues = false}) async {
     if (formId == FormIds.personFormId) {
       return await getFormPersona(personaId);
+    }
+    if (addValues) {
+      return await getFormWithAddValues(formId);
     }
     return Database().getFormById(formId);
   }
@@ -92,5 +105,30 @@ class PersonStorage extends RemoteStorageInterface<Person> {
       }
     }
     return form.copyWith(questions: questions);
+  }
+
+  Future<AppForm> getFormWithAddValues(String formId) async {
+    AppForm form = Database().getFormById(formId);
+    List<Person> persons = await all;
+    List<String> values = persons.map((e) => e.displayName).toList();
+    List<String> initialSelectedValues = [];
+    if (formId == FormIds.interestedBusFormId) {
+      initialSelectedValues =
+          persons.where((element) => element.bus != null && element.bus!).map((e) => e.displayName).toList();
+    } else if (formId == FormIds.interestedHotelFormId) {
+      initialSelectedValues =
+          persons.where((element) => element.hotel != null && element.hotel!).map((e) => e.displayName).toList();
+    }
+    form = form.copyWith(
+        questions: form.questions
+            .map(
+              (question) => (question as CheckBoxQuestion).copyWith(
+                values: values,
+                initialSelectedValues: initialSelectedValues,
+              ),
+            )
+            .toList());
+
+    return form;
   }
 }
