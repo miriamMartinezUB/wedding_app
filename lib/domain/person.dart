@@ -27,7 +27,7 @@ class Person {
     this.hotel,
   });
 
-   String get displayName=> name + ' '+surnames;
+  String get displayName => '$name $surnames';
 
   factory Person.fromDoc(DocumentSnapshot doc) {
     return Person(
