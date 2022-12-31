@@ -9,7 +9,6 @@ import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart'
 import 'package:wedding_jc/infrastructure/navigation/navigation_modal.dart';
 import 'package:wedding_jc/resources/dimens.dart';
 import 'package:wedding_jc/resources/palette_colors.dart';
-import 'package:wedding_jc/views/check.dart';
 import 'package:wedding_jc/views/count_down.dart';
 import 'package:wedding_jc/views/expand_image_with_blur_background.dart';
 import 'package:wedding_jc/views/page_wrapper.dart';
@@ -43,7 +42,7 @@ class HomePage extends StatelessWidget {
                     const ExpandImageWithBlurBackground(
                         height: 250, imagePath: 'assets/images/judit_and_cristian.jpeg'),
                     Container(
-                      color: PaletteColors.secondary,
+                      color: PaletteColors.primary,
                       width: double.infinity,
                       child: Column(
                         children: [
@@ -95,44 +94,34 @@ class HomePage extends StatelessWidget {
                         final Task task = state.tasks[index];
                         return Padding(
                           padding: EdgeInsets.only(bottom: task == state.tasks.last ? 0 : Dimens.paddingLarge),
-                          child: Row(
-                            children: [
-                              Check(
-                                key: Key(task.id),
-                                show: state.doneTasksIds.contains(task.id),
-                              ),
-                              Expanded(
-                                child: CardButton(
-                                  title: task.title,
-                                  subtitle: task.subtitle,
-                                  trailing: const Icon(Icons.arrow_forward_ios),
-                                  onTap: () async {
-                                    if (task is TaskLink) {
-                                      homeBloc.add(HomeLaunchLinkEvent(link: task.link));
-                                    } else if (task is TaskPage) {
-                                      BlocProvider.of<NavigatorBloc>(context).add(
-                                        PushScreenNavigationEvent(
-                                          model: NavigationModel(
-                                            route: task.routeName,
-                                          ),
-                                        ),
-                                      );
-                                    } else if (task is TaskForm) {
-                                      BlocProvider.of<NavigatorBloc>(context).add(
-                                        PushScreenNavigationEvent(
-                                          model: NavigationModel(
-                                              route: task.routeName,
-                                              arguments: ArgsFormBuilderPage(
-                                                formId: task.formId,
-                                                addValues: true,
-                                              )),
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ),
-                              ),
-                            ],
+                          child: CardButton(
+                            title: task.title,
+                            subtitle: task.subtitle,
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                            onTap: () async {
+                              if (task is TaskLink) {
+                                homeBloc.add(HomeLaunchLinkEvent(link: task.link));
+                              } else if (task is TaskPage) {
+                                BlocProvider.of<NavigatorBloc>(context).add(
+                                  PushScreenNavigationEvent(
+                                    model: NavigationModel(
+                                      route: task.routeName,
+                                    ),
+                                  ),
+                                );
+                              } else if (task is TaskForm) {
+                                BlocProvider.of<NavigatorBloc>(context).add(
+                                  PushScreenNavigationEvent(
+                                    model: NavigationModel(
+                                        route: task.routeName,
+                                        arguments: ArgsFormBuilderPage(
+                                          formId: task.formId,
+                                          addValues: true,
+                                        )),
+                                  ),
+                                );
+                              }
+                            },
                           ),
                         );
                       },

@@ -44,6 +44,7 @@ class QuestionStructure extends StatelessWidget {
         const SizedBox(height: Dimens.paddingLarge),
         if (question is FreeTextQuestion)
           QuestionFreeText(
+            initialText: (question as FreeTextQuestion).value,
             isLong: (question as FreeTextQuestion).longText,
             onChanged: onChange,
           ),
@@ -56,7 +57,7 @@ class QuestionStructure extends StatelessWidget {
         if (question is CheckBoxQuestion)
           QuestionCheckBox(
             values: (question as CheckBoxQuestion).values!,
-            valuesSelected: (question as CheckBoxQuestion).initialSelectedValues ?? [],
+            valuesSelected: (question as CheckBoxQuestion).selectedValues ?? [],
             onChange: onChange,
           ),
         if (question is DateQuestion)

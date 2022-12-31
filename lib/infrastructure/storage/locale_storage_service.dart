@@ -24,8 +24,8 @@ class LocaleStorageService {
     _prefs.setString(key, value);
   }
 
-  void getString(String key) {
-    _prefs.getString(key);
+  String getString(String key) {
+    return _prefs.getString(key) ?? '';
   }
 
   /// StringList methods
