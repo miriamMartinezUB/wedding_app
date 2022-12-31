@@ -25,16 +25,19 @@ class QuestionDate extends StatelessWidget {
         onTap: () => Picker(
             hideHeader: true,
             adapter: DateTimePickerAdapter(),
-            title: AppText(translate('add_person_question_date_birth')),
-            cancelText: translate('common_confirm'),
-            confirmText: translate('common_cancel'),
-            confirmTextStyle: getTextStyle(type: TextTypes.title, color: PaletteColors.primary),
-            cancelTextStyle: getTextStyle(type: TextTypes.title, color: PaletteColors.primary),
+            title: AppText(
+              translate('add_person_question_date_birth'),
+              type: TextTypes.title,
+            ),
+            cancelText: translate('common_cancel'),
+            confirmText: translate('common_confirm'),
+            confirmTextStyle: getTextStyle(type: TextTypes.title, color: PaletteColors.text),
+            cancelTextStyle: getTextStyle(type: TextTypes.title, color: PaletteColors.textSubtitle),
             selectedTextStyle: getTextStyle(),
             textStyle: getTextStyle(type: TextTypes.subtitle),
             onConfirm: (Picker picker, List value) {
               String newDate = (picker.adapter as DateTimePickerAdapter).value!.formatDate;
-              onChange(newDate);
+              onChange.call(newDate);
             }).showDialog(context),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimens.paddingMedium, vertical: Dimens.paddingLarge),

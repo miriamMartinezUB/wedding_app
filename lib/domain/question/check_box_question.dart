@@ -2,13 +2,13 @@ import 'package:wedding_jc/domain/question/question.dart';
 
 class CheckBoxQuestion extends Question {
   final List<String>? values;
-  final List<String>? initialSelectedValues;
+  final List<String>? selectedValues;
 
   CheckBoxQuestion({
     required String title,
     required String id,
     this.values,
-    this.initialSelectedValues,
+    this.selectedValues,
     String? subtitle,
     bool mandatory = true,
   }) : super(
@@ -26,7 +26,7 @@ class CheckBoxQuestion extends Question {
         id: id,
         title: title,
         values: values ?? this.values,
-        initialSelectedValues: initialSelectedValues ?? this.initialSelectedValues,
+        selectedValues: initialSelectedValues ?? this.selectedValues,
         subtitle: subtitle,
         mandatory: mandatory,
       );

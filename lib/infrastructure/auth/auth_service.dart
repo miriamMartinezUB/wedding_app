@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:wedding_jc/domain/app_user.dart';
 import 'package:wedding_jc/domain/person.dart';
 import 'package:wedding_jc/infrastructure/firebase/firebase_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
@@ -48,11 +50,19 @@ class AuthService {
 
   void _saveAppUserFromUser(User user) {
     _storageService.saveEncryptString(StorageKeys.keyEncryptToken, user.refreshToken!);
-
+    _storageService.saveString(
+      StorageKeys.keyUser,
+      jsonEncode(
+        AppUser(
+          id: user.uid,
+          name: user.displayName ?? user.email ?? '',
+        ).toJson(),
+      ),
+    );
     PersonStorage().add(
       Person(
         id: user.uid,
-        name: (user.displayName ?? '').split(' ').first,
+        name: (user.displayName ?? user.email ?? '').split(' ').first,
         surnames: (user.displayName ?? '').split(' ').last,
         addedBy: user.uid,
       ),

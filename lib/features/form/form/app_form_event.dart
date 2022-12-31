@@ -2,7 +2,14 @@ part of 'app_form_bloc.dart';
 
 abstract class AppFormEvent {}
 
-class SaveFormEvent extends AppFormEvent {}
+class SaveFormEvent extends AppFormEvent {
+  final String? personId;
+  final bool newPerson;
+  SaveFormEvent({
+    this.personId,
+    this.newPerson = false,
+  });
+}
 
 class LoadFormEvent extends AppFormEvent {
   final String? personId;

@@ -7,21 +7,23 @@ import 'package:wedding_jc/features/form/views/question_structure.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/resources/dimens.dart';
-import 'package:wedding_jc/resources/palette_colors.dart';
 import 'package:wedding_jc/views/buttons/app_button.dart';
 import 'package:wedding_jc/views/circular_progress.dart';
 import 'package:wedding_jc/views/page_wrapper.dart';
-import 'package:wedding_jc/views/show_my_dialog.dart';
 
 class ArgsFormBuilderPage {
   final String formId;
   final String? personId;
   final bool addValues;
+  final bool newPerson;
+  final Function? onSave;
 
   ArgsFormBuilderPage({
     required this.formId,
     this.personId,
     this.addValues = false,
+    this.newPerson = false,
+    this.onSave,
   });
 }
 
@@ -29,12 +31,16 @@ class FormBuilderPage extends StatelessWidget {
   final String formId;
   final String? personId;
   final bool addValues;
+  final bool newPerson;
+  final Function? onSave;
 
   const FormBuilderPage({
     Key? key,
     required this.formId,
     required this.addValues,
+    required this.newPerson,
     this.personId,
+    this.onSave,
   }) : super(key: key);
 
   @override
@@ -56,29 +62,29 @@ class FormBuilderPage extends StatelessWidget {
               appBarName: translate(state.form.name),
               showBackButton: true,
               canGoHome: false,
-              canGoBack: false,
-              onPop: () {
-                ShowMyDialog(
-                  title: translate('form_dialog_title'),
-                  text: translate('form_dialog_text'),
-                  actions: [
-                    ContentAction(
-                      textAction: translate('common_confirm'),
-                      color: PaletteColors.textSubtitle,
-                      onPress: () {
-                        navigatorBloc.add(BackNavigationEvent());
-                        navigatorBloc.add(BackNavigationEvent());
-                      },
-                    ),
-                    ContentAction(
-                      textAction: translate('common_cancel'),
-                      onPress: () {
-                        navigatorBloc.add(BackNavigationEvent());
-                      },
-                    ),
-                  ],
-                ).show(context);
-              },
+              // canGoBack: false,
+              // onPop: () {
+              //   ShowMyDialog(
+              //     title: translate('form_dialog_title'),
+              //     text: translate('form_dialog_text'),
+              //     actions: [
+              //       ContentAction(
+              //         textAction: translate('common_confirm'),
+              //         color: PaletteColors.textSubtitle,
+              //         onPress: () {
+              //           navigatorBloc.add(BackNavigationEvent());
+              //           navigatorBloc.add(BackNavigationEvent());
+              //         },
+              //       ),
+              //       ContentAction(
+              //         textAction: translate('common_cancel'),
+              //         onPress: () {
+              //           navigatorBloc.add(BackNavigationEvent());
+              //         },
+              //       ),
+              //     ],
+              //   ).show(context);
+              // },
               body: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge, horizontal: Dimens.paddingLarge),
@@ -108,8 +114,17 @@ class FormBuilderPage extends StatelessWidget {
                         text: 'common_save',
                         shouldTranslate: true,
                         onTap: () {
-                          bloc.add(SaveFormEvent());
-                          navigatorBloc.add(HomeNavigationEvent());
+                          bloc.add(SaveFormEvent(
+                            personId: personId,
+                            newPerson: newPerson,
+                          ));
+                          if (onSave != null) {
+                            print('hey');
+                            onSave!();
+                          } else {
+                            print('hey2');
+                            navigatorBloc.add(HomeNavigationEvent());
+                          }
                         },
                       ),
                     ],
