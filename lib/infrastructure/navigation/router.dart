@@ -7,6 +7,7 @@ import 'package:wedding_jc/features/form/form_builder_page.dart';
 import 'package:wedding_jc/features/home/home_page.dart';
 import 'package:wedding_jc/features/information/information_page.dart';
 import 'package:wedding_jc/features/persons/pages/persons_page.dart';
+import 'package:wedding_jc/features/present/present_page.dart';
 import 'package:wedding_jc/features/sign_up/sign_up_page.dart';
 import 'package:wedding_jc/features/splash/splash_page.dart';
 import 'package:wedding_jc/resources/routes.dart';
@@ -28,6 +29,8 @@ class WeddingRouter {
         return MaterialPageRoute(
           builder: (context) => const DietPage(),
         );
+      case Routes.present:
+        return MaterialPageRoute(builder: (context) => const PresentPage());
       case Routes.form:
         ArgsFormBuilderPage args = settings.arguments as ArgsFormBuilderPage;
         return MaterialPageRoute(
@@ -40,13 +43,11 @@ class WeddingRouter {
           ),
         );
       case Routes.notImplemented:
-        return MaterialPageRoute(
-            builder: (context) => const NotImplementedPage());
+        return MaterialPageRoute(builder: (context) => const NotImplementedPage());
       case Routes.updateReady:
         return MaterialPageRoute(builder: (context) => const UpdateReadyPage());
       case Routes.changeLanguage:
-        return MaterialPageRoute(
-            builder: (context) => const ChangeLanguagePage());
+        return MaterialPageRoute(builder: (context) => const ChangeLanguagePage());
       default:
         return MaterialPageRoute(builder: (context) => const SplashPage());
     }
