@@ -46,9 +46,8 @@ class DietPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        translate(
-                            'persons_added'), // TODO: Do you want to change the copy here?
-                        type: TextTypes.titleMedium,
+                        translate('add_diet_and_intolerances_form_name'),
+                        type: TextTypes.subtitle,
                       ),
                       const SizedBox(height: Dimens.paddingLarge),
                       ListView.builder(
@@ -58,23 +57,19 @@ class DietPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             Person person = state.persons[index];
                             return Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: person == state.persons.last
-                                      ? 0
-                                      : Dimens.paddingLarge),
+                              padding: EdgeInsets.only(bottom: person == state.persons.last ? 0 : Dimens.paddingLarge),
                               child: CardButton(
                                 title: ('${person.name} ${person.surnames}'),
-                                trailing: const Icon(Icons.edit,
-                                    color: PaletteColors.icons),
+                                trailing: const Icon(Icons.edit, color: PaletteColors.icons),
                                 onTap: () {
                                   navigatorBloc.add(
                                     PushScreenNavigationEvent(
                                       model: NavigationModel(
                                         route: Routes.form,
                                         arguments: ArgsFormBuilderPage(
-                                            formId: FormIds
-                                                .personFormId, // TODO: Does it go to the same form here?
-                                            personId: person.id),
+                                          formId: FormIds.dietAndIntolerancesFormId,
+                                          personId: person.id,
+                                        ),
                                       ),
                                     ),
                                   );

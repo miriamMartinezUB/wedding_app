@@ -1,6 +1,5 @@
 part of 'diet_bloc.dart';
 
-@immutable
 abstract class DietState {}
 
 class DietInitial extends DietState {}
