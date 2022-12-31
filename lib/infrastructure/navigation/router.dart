@@ -43,13 +43,11 @@ class WeddingRouter {
           ),
         );
       case Routes.notImplemented:
-        return MaterialPageRoute(
-            builder: (context) => const NotImplementedPage());
+        return MaterialPageRoute(builder: (context) => const NotImplementedPage());
       case Routes.updateReady:
         return MaterialPageRoute(builder: (context) => const UpdateReadyPage());
       case Routes.changeLanguage:
-        return MaterialPageRoute(
-            builder: (context) => const ChangeLanguagePage());
+        return MaterialPageRoute(builder: (context) => const ChangeLanguagePage());
       default:
         return MaterialPageRoute(builder: (context) => const SplashPage());
     }
