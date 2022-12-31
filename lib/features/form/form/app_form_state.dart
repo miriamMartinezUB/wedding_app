@@ -4,6 +4,8 @@ abstract class AppFormState {}
 
 class FormInitial extends AppFormState {}
 
+class FormSaved extends AppFormState {}
+
 class FormLoading extends AppFormState {}
 
 class FormLoaded extends AppFormState {

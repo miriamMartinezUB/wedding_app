@@ -59,7 +59,9 @@ class DietPage extends StatelessWidget {
                             return Padding(
                               padding: EdgeInsets.only(bottom: person == state.persons.last ? 0 : Dimens.paddingLarge),
                               child: CardButton(
+                                key: Key(person.id),
                                 title: ('${person.name} ${person.surnames}'),
+                                subtitle: person.allergiesAndIntolerances,
                                 trailing: const Icon(Icons.edit, color: PaletteColors.icons),
                                 onTap: () {
                                   navigatorBloc.add(
@@ -69,6 +71,10 @@ class DietPage extends StatelessWidget {
                                         arguments: ArgsFormBuilderPage(
                                           formId: FormIds.dietAndIntolerancesFormId,
                                           personId: person.id,
+                                          onSave: () {
+                                            bloc.add(DietLoadEvent());
+                                            navigatorBloc.add(BackNavigationEvent());
+                                          },
                                         ),
                                       ),
                                     ),

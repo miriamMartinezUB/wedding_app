@@ -41,21 +41,19 @@ class DataFiller {
       isByPerson: true,
       questions: [
         SingleSelectionQuestion(
-          values: Diet.values.map((diet) => diet.title).toList(),
-          title: 'add_diet_and_intolerances_question_diet',
-          initialSelectedValue: Diet.regular.title,
-          id: '032ed928-59af-451f-9036-edd670fdda5c',
-        ),
-        SingleSelectionQuestion(
           values: Menu.values.map((menu) => menu.title).toList(),
-          initialSelectedValue: Menu.adult.title,
+          selectedValue: Menu.adult.title,
           title: 'add_diet_and_intolerances_question_menu',
           id: 'd14e8db2-eeed-4eed-814f-40d8c81eb4df',
         ),
+        SingleSelectionQuestion(
+          values: Diet.values.map((diet) => diet.title).toList(),
+          title: 'add_diet_and_intolerances_question_diet',
+          selectedValue: Diet.regular.title,
+          id: '032ed928-59af-451f-9036-edd670fdda5c',
+        ),
         CheckBoxQuestion(
-          values: Intolerance.values
-              .map((intolerance) => intolerance.title)
-              .toList(),
+          values: Intolerance.values.map((intolerance) => intolerance.title).toList(),
           title: 'add_diet_and_intolerances_question_intolerances',
           id: 'af5819f5-edde-4099-b9d6-8351b786be55',
         ),

@@ -51,7 +51,7 @@ class QuestionStructure extends StatelessWidget {
         if (question is SingleSelectionQuestion)
           QuestionSingleSelect(
             values: (question as SingleSelectionQuestion).values,
-            initialValue: (question as SingleSelectionQuestion).initialSelectedValue,
+            initialValue: (question as SingleSelectionQuestion).selectedValue,
             onChange: onChange,
           ),
         if (question is CheckBoxQuestion)

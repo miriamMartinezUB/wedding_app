@@ -2,13 +2,13 @@ import 'package:wedding_jc/domain/question/question.dart';
 
 class SingleSelectionQuestion extends Question {
   final List<String> values;
-  final String initialSelectedValue;
+  final String selectedValue;
 
   SingleSelectionQuestion({
     required this.values,
     required String title,
     required String id,
-    required this.initialSelectedValue,
+    required this.selectedValue,
     String? subtitle,
     bool mandatory = true,
   }) : super(
@@ -19,13 +19,13 @@ class SingleSelectionQuestion extends Question {
         );
 
   SingleSelectionQuestion copyWith({
-    String? initialSelectedValue,
+    String? selectedValue,
   }) =>
       SingleSelectionQuestion(
         id: id,
         title: title,
         values: values,
-        initialSelectedValue: initialSelectedValue ?? this.initialSelectedValue,
+        selectedValue: selectedValue ?? this.selectedValue,
         subtitle: subtitle,
         mandatory: mandatory,
       );

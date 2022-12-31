@@ -83,7 +83,7 @@ class PersonStorage extends RemoteStorageInterface<Person> {
     if (addValues) {
       return await getFormWithAddValues(formId);
     }
-    return Database().getFormById(formId);
+    return getFormIntolerances(personaId);
   }
 
   Future<AppForm> getFormPersona(String? personaId) async {
@@ -107,6 +107,36 @@ class PersonStorage extends RemoteStorageInterface<Person> {
     return form.copyWith(questions: questions);
   }
 
+  Future<AppForm> getFormIntolerances(String? personaId) async {
+    AppForm form = Database().getFormById(FormIds.dietAndIntolerancesFormId);
+    if (personaId == null) {
+      return form;
+    }
+    Person person = await get(personaId);
+    List<Question> questions = [];
+    for (Question question in form.questions) {
+      if (question.id == 'd14e8db2-eeed-4eed-814f-40d8c81eb4df') {
+        questions.add((question as SingleSelectionQuestion).copyWith(selectedValue: person.typeMenu));
+      }
+      if (question.id == '032ed928-59af-451f-9036-edd670fdda5c') {
+        questions.add((question as SingleSelectionQuestion).copyWith(selectedValue: person.typeDiet));
+      }
+      if (question.id == 'af5819f5-edde-4099-b9d6-8351b786be55') {
+        questions.add((question as CheckBoxQuestion).copyWith(selectedValues: person.intolerances));
+      }
+      if (question.id == '0a4a0026-c9bb-42fb-b667-73649f1f0b38') {
+        questions.add((question as CheckBoxQuestion).copyWith(selectedValues: person.allergies));
+      }
+      if (question.id == 'c70259b1-9782-48eb-b3b4-e92834ab3c54') {
+        questions.add((question as FreeTextQuestion).copyWith(value: person.otherAllergiesAndIntolerances));
+      }
+      if (question.id == '6a6f5cfb-89e5-4e9f-be2d-68cccd2581da') {
+        questions.add((question as FreeTextQuestion).copyWith(value: person.observations));
+      }
+    }
+    return form.copyWith(questions: questions);
+  }
+
   Future<AppForm> getFormWithAddValues(String formId) async {
     AppForm form = Database().getFormById(formId);
     List<Person> persons = await all;
@@ -124,7 +154,7 @@ class PersonStorage extends RemoteStorageInterface<Person> {
             .map(
               (question) => (question as CheckBoxQuestion).copyWith(
                 values: values,
-                initialSelectedValues: initialSelectedValues,
+                selectedValues: initialSelectedValues,
               ),
             )
             .toList());

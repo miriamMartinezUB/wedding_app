@@ -15,9 +15,22 @@ class AppFormBloc extends Bloc<AppFormEvent, AppFormState> {
   AppFormBloc(String formId) : super(FormInitial()) {
     on<SaveFormEvent>((event, emit) async {
       emit(FormLoading());
+      if (formId == FormIds.dietAndIntolerancesFormId) {
+        Person person = await _storage.get(event.personId!);
+        await _storage.update(
+          person.copyWith(
+            typeMenu: (_form.questions[0] as SingleSelectionQuestion).selectedValue,
+            typeDiet: (_form.questions[1] as SingleSelectionQuestion).selectedValue,
+            intolerances: (_form.questions[2] as CheckBoxQuestion).selectedValues,
+            allergies: (_form.questions[3] as CheckBoxQuestion).selectedValues,
+            otherAllergiesAndIntolerances: (_form.questions[4] as FreeTextQuestion).value ?? '',
+            observations: (_form.questions[5] as FreeTextQuestion).value ?? '',
+          ),
+        );
+      }
       if (formId == FormIds.personFormId) {
         if (event.newPerson) {
-          _storage.add(
+          await _storage.add(
             Person(
               id: const Uuid().v4(),
               name: (_form.questions[0] as FreeTextQuestion).value ?? '',
@@ -27,7 +40,7 @@ class AppFormBloc extends Bloc<AppFormEvent, AppFormState> {
           );
         } else {
           Person person = await _storage.get(event.personId!);
-          _storage.update(
+          await _storage.update(
             person.copyWith(
               name: (_form.questions[0] as FreeTextQuestion).value,
               surnames: (_form.questions[1] as FreeTextQuestion).value,
@@ -38,7 +51,7 @@ class AppFormBloc extends Bloc<AppFormEvent, AppFormState> {
       }
       if (formId == FormIds.interestedBusFormId) {
         for (Person person in (await _storage.all)) {
-          _storage.update(
+          await _storage.update(
             person.copyWith(
                 bus: (_form.questions.first as CheckBoxQuestion).selectedValues?.contains(person.displayName) ?? false),
           );
@@ -46,13 +59,14 @@ class AppFormBloc extends Bloc<AppFormEvent, AppFormState> {
       }
       if (formId == FormIds.interestedHotelFormId) {
         for (Person person in (await _storage.all)) {
-          _storage.update(
+          await _storage.update(
             person.copyWith(
                 hotel:
                     (_form.questions.first as CheckBoxQuestion).selectedValues?.contains(person.displayName) ?? false),
           );
         }
       }
+      emit(FormSaved());
     });
     on<EditQuestionFormEvent>((event, emit) {
       List<Question> questions = [];
@@ -64,15 +78,15 @@ class AppFormBloc extends Bloc<AppFormEvent, AppFormState> {
           } else if (question is DateQuestion) {
             newQuestion = question.copyWith(date: event.value);
           } else if (question is SingleSelectionQuestion) {
-            newQuestion = question.copyWith(initialSelectedValue: event.value);
+            newQuestion = question.copyWith(selectedValue: event.value);
           } else if (question is CheckBoxQuestion) {
-            List<String> values = question.selectedValues ?? [];
+            List values = question.selectedValues ?? [];
             if (values.contains(event.value)) {
               values.remove(event.value);
             } else {
               values.add(event.value);
             }
-            newQuestion = question.copyWith(initialSelectedValues: values);
+            newQuestion = question.copyWith(selectedValues: values);
           }
           questions.add(newQuestion);
         } else {

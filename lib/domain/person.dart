@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_translate/flutter_translate.dart';
 
 class Person {
   final String id;
@@ -6,12 +7,14 @@ class Person {
   final String surnames;
   final String? birthday;
   final String? addedBy;
-  final List<String>? intolerances;
-  final List<String>? allergies;
+  final List? intolerances;
+  final List? allergies;
   final String? typeMenu;
   final String? typeDiet;
   final bool? bus;
   final bool? hotel;
+  final String? otherAllergiesAndIntolerances;
+  final String? observations;
 
   Person({
     required this.id,
@@ -25,21 +28,58 @@ class Person {
     this.typeDiet,
     this.bus,
     this.hotel,
+    this.observations,
+    this.otherAllergiesAndIntolerances,
   });
 
   String get displayName => '$name $surnames';
+  String? get allergiesAndIntolerances {
+    String s = typeMenu == null || typeMenu == ''
+        ? ''
+        : '[${translate('add_diet_and_intolerances_question_menu')}:](B) ${translate(typeMenu!)}';
+    s = typeDiet == null || typeDiet == ''
+        ? s
+        : '$s\n[${translate('add_diet_and_intolerances_question_diet')}:](B) ${translate(typeDiet!)}';
+    if (intolerances != null && intolerances!.isNotEmpty) {
+      s = '$s\n[${translate('add_diet_and_intolerances_question_intolerances')}:](B)';
+      for (String intolerance in intolerances!) {
+        s = '$s   ${translate(intolerance)}';
+        if (intolerance != intolerances!.last) {
+          s = '$s,';
+        }
+      }
+    }
+    if (allergies != null && allergies!.isNotEmpty) {
+      s = '$s\n[${translate('add_diet_and_intolerances_question_allergy')}:](B)';
+      for (String allergy in allergies!) {
+        s = '$s ${translate(allergy)}';
+        if (allergy != allergies!.last) {
+          s = '$s,';
+        }
+      }
+    }
+    s = otherAllergiesAndIntolerances == null || otherAllergiesAndIntolerances == ''
+        ? s
+        : '$s\n[${translate('add_diet_and_intolerances_question_other')}:](B) ${translate(otherAllergiesAndIntolerances!)}';
+    s = observations == null || observations == ''
+        ? s
+        : '$s\n[${translate('add_diet_and_intolerances_question_observations')}:](B) ${translate(observations!)}';
+    return s == '' ? null : s;
+  }
 
   Person copyWith({
     String? name,
     String? surnames,
     String? birthday,
-    List<String>? intolerances,
-    List<String>? allergies,
+    List? intolerances,
+    List? allergies,
     String? typeMenu,
     String? typeDiet,
     String? addedBy,
     bool? bus,
     bool? hotel,
+    String? otherAllergiesAndIntolerances,
+    String? observations,
   }) {
     return Person(
       id: id,
@@ -53,6 +93,8 @@ class Person {
       typeDiet: typeDiet ?? this.typeDiet,
       typeMenu: typeMenu ?? this.typeMenu,
       addedBy: addedBy ?? this.addedBy,
+      observations: observations ?? observations,
+      otherAllergiesAndIntolerances: otherAllergiesAndIntolerances ?? this.otherAllergiesAndIntolerances,
     );
   }
 
@@ -69,6 +111,8 @@ class Person {
       intolerances: doc['intolerances'],
       typeDiet: doc['typeDiet'],
       typeMenu: doc['typeMenu'],
+      observations: doc['observations'],
+      otherAllergiesAndIntolerances: doc['otherAllergiesAndIntolerances'],
     );
   }
 
@@ -85,6 +129,8 @@ class Person {
       'intolerances': intolerances,
       'typeDiet': typeDiet,
       'typeMenu': typeMenu,
+      'observations': observations,
+      'otherAllergiesAndIntolerances': otherAllergiesAndIntolerances,
     };
   }
 }

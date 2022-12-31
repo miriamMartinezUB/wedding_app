@@ -2,7 +2,7 @@ import 'package:wedding_jc/domain/question/question.dart';
 
 class CheckBoxQuestion extends Question {
   final List<String>? values;
-  final List<String>? selectedValues;
+  final List? selectedValues;
 
   CheckBoxQuestion({
     required String title,
@@ -19,14 +19,14 @@ class CheckBoxQuestion extends Question {
         );
 
   CheckBoxQuestion copyWith({
-    List<String>? initialSelectedValues,
+    List? selectedValues,
     List<String>? values,
   }) =>
       CheckBoxQuestion(
         id: id,
         title: title,
         values: values ?? this.values,
-        selectedValues: initialSelectedValues ?? this.selectedValues,
+        selectedValues: selectedValues ?? this.selectedValues,
         subtitle: subtitle,
         mandatory: mandatory,
       );

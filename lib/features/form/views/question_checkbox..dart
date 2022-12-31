@@ -5,7 +5,7 @@ import 'package:wedding_jc/views/text.dart';
 
 class QuestionCheckBox extends StatelessWidget {
   final List<String> values;
-  final List<String> valuesSelected;
+  final List valuesSelected;
   final Function(String newValue) onChange;
 
   const QuestionCheckBox({

@@ -59,7 +59,13 @@ class PersonsPage extends StatelessWidget {
                               model: NavigationModel(
                                 route: Routes.form,
                                 arguments: ArgsFormBuilderPage(
-                                    formId: FormIds.personFormId),
+                                  formId: FormIds.personFormId,
+                                  newPerson: true,
+                                  onSave: () {
+                                    bloc.add(PersonsLoadEvent());
+                                    navigatorBloc.add(BackNavigationEvent());
+                                  },
+                                ),
                               ),
                             ),
                           );
@@ -78,22 +84,24 @@ class PersonsPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             Person person = state.persons[index];
                             return Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: person == state.persons.last
-                                      ? 0
-                                      : Dimens.paddingLarge),
+                              padding: EdgeInsets.only(bottom: person == state.persons.last ? 0 : Dimens.paddingLarge),
                               child: CardButton(
                                 title: ('${person.name} ${person.surnames}'),
-                                trailing: const Icon(Icons.edit,
-                                    color: PaletteColors.icons),
+                                subtitle: person.birthday,
+                                trailing: const Icon(Icons.edit, color: PaletteColors.icons),
                                 onTap: () {
                                   navigatorBloc.add(
                                     PushScreenNavigationEvent(
                                       model: NavigationModel(
                                         route: Routes.form,
                                         arguments: ArgsFormBuilderPage(
-                                            formId: FormIds.personFormId,
-                                            personId: person.id),
+                                          formId: FormIds.personFormId,
+                                          personId: person.id,
+                                          onSave: () {
+                                            bloc.add(PersonsLoadEvent());
+                                            navigatorBloc.add(BackNavigationEvent());
+                                          },
+                                        ),
                                       ),
                                     ),
                                   );

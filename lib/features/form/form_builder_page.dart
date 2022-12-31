@@ -57,6 +57,13 @@ class FormBuilderPage extends StatelessWidget {
               addValues: addValues,
             ));
           }
+          if (state is FormSaved) {
+            if (onSave != null) {
+              onSave!();
+            } else {
+              navigatorBloc.add(HomeNavigationEvent());
+            }
+          }
           if (state is FormLoaded) {
             return PageWrapper(
               appBarName: translate(state.form.name),
@@ -118,13 +125,6 @@ class FormBuilderPage extends StatelessWidget {
                             personId: personId,
                             newPerson: newPerson,
                           ));
-                          if (onSave != null) {
-                            print('hey');
-                            onSave!();
-                          } else {
-                            print('hey2');
-                            navigatorBloc.add(HomeNavigationEvent());
-                          }
                         },
                       ),
                     ],
