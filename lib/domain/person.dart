@@ -15,6 +15,7 @@ class Person {
   final bool? hotel;
   final String? otherAllergiesAndIntolerances;
   final String? observations;
+  final String? languageCode;
 
   Person({
     required this.id,
@@ -30,6 +31,7 @@ class Person {
     this.hotel,
     this.observations,
     this.otherAllergiesAndIntolerances,
+    this.languageCode,
   });
 
   String get displayName => '$name $surnames';
@@ -80,6 +82,7 @@ class Person {
     bool? hotel,
     String? otherAllergiesAndIntolerances,
     String? observations,
+    String? languageCode,
   }) {
     return Person(
       id: id,
@@ -93,6 +96,7 @@ class Person {
       typeDiet: typeDiet ?? this.typeDiet,
       typeMenu: typeMenu ?? this.typeMenu,
       addedBy: addedBy ?? this.addedBy,
+      languageCode: languageCode ?? languageCode,
       observations: observations ?? observations,
       otherAllergiesAndIntolerances: otherAllergiesAndIntolerances ?? this.otherAllergiesAndIntolerances,
     );
@@ -113,6 +117,7 @@ class Person {
       typeMenu: doc['typeMenu'],
       observations: doc['observations'],
       otherAllergiesAndIntolerances: doc['otherAllergiesAndIntolerances'],
+      languageCode: doc['languageCode'],
     );
   }
 
@@ -131,6 +136,7 @@ class Person {
       'typeMenu': typeMenu,
       'observations': observations,
       'otherAllergiesAndIntolerances': otherAllergiesAndIntolerances,
+      'languageCode': languageCode,
     };
   }
 }

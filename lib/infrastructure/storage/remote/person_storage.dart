@@ -76,6 +76,11 @@ class PersonStorage extends RemoteStorageInterface<Person> {
     }
   }
 
+  Future<void> updateLocale(String locale) async {
+    Person person = await get(userId);
+    await update(person.copyWith(languageCode: locale));
+  }
+
   Future<AppForm> getFormFromIdAndPersonaId(String formId, String? personaId, {bool addValues = false}) async {
     if (formId == FormIds.personFormId) {
       return await getFormPersona(personaId);

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:wedding_jc/domain/app_user.dart';
 import 'package:wedding_jc/domain/person.dart';
 import 'package:wedding_jc/infrastructure/firebase/firebase_service.dart';
+import 'package:wedding_jc/infrastructure/language/language_service.dart';
 import 'package:wedding_jc/infrastructure/locator_setup.dart';
 import 'package:wedding_jc/infrastructure/storage/locale_storage_service.dart';
 import 'package:wedding_jc/infrastructure/storage/remote/person_storage.dart';
@@ -65,6 +66,7 @@ class AuthService {
         name: (user.displayName ?? user.email ?? '').split(' ').first,
         surnames: (user.displayName ?? '').split(' ').last,
         addedBy: user.uid,
+        languageCode: locator<LanguageService>().currentLanguageCode,
       ),
     );
   }

@@ -19,7 +19,7 @@ Future<void> initializeConfigurationServices() async {
   /// WARNING: LocaleStorageService always have to be initialized first of others service
   /// because it has a dependency
   await locator<LocaleStorageService>().initialize();
+  await locator<LanguageService>().initDelegate();
   await locator<FirebaseService>().initialize();
   await locator<AuthService>().initialize();
-  await locator<LanguageService>().initDelegate();
 }
