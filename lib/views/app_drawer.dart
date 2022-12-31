@@ -25,7 +25,8 @@ class AppDrawer extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge),
+                padding:
+                    const EdgeInsets.symmetric(vertical: Dimens.paddingXLarge),
                 child: Column(
                   children: [
                     DrawerItem(
@@ -46,7 +47,7 @@ class AppDrawer extends StatelessWidget {
                     DrawerItem(
                       text: translate('bank_account_title'),
                       iconData: Icons.card_giftcard,
-                      destination: '',
+                      destination: Routes.present,
                     ),
                     DrawerItem(
                       text: 'Invitación',
@@ -104,7 +105,8 @@ class DrawerItem extends StatelessWidget {
     this.onTap,
     this.color,
   }) : super(key: key) {
-    assert((destination != null && onTap == null) || (destination == null && onTap != null));
+    assert((destination != null && onTap == null) ||
+        (destination == null && onTap != null));
   }
 
   @override
@@ -113,7 +115,8 @@ class DrawerItem extends StatelessWidget {
       splashColor: PaletteColors.primary,
       onTap: () {
         if (destination != null) {
-          final NavigatorBloc navigatorBloc = BlocProvider.of<NavigatorBloc>(context);
+          final NavigatorBloc navigatorBloc =
+              BlocProvider.of<NavigatorBloc>(context);
           if (destination == Routes.home) {
             navigatorBloc.add(HomeNavigationEvent());
           } else {

@@ -39,7 +39,8 @@ class InformationPage extends StatelessWidget {
                       text: translate('place_direction'),
                       iconData: Icons.location_on,
                       onTap: () {
-                        launchUrlString('https://goo.gl/maps/gxQGEEP849W6vgRy5');
+                        launchUrlString(
+                            'https://goo.gl/maps/gxQGEEP849W6vgRy5');
                       },
                     ),
                     AppListTile(
@@ -55,24 +56,8 @@ class InformationPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: Dimens.paddingXLarge),
-                AppText(translate('bank_account_title'), type: TextTypes.titleBold),
-                const SizedBox(height: Dimens.paddingLarge),
-                CardWithImageAndDescription(
-                  descriptions: [
-                    AppListTile(
-                      text: 'ES53 0049 4174 0121 1408 4349',
-                      iconData: Icons.copy,
-                      onTap: () async {
-                        await Clipboard.setData(const ClipboardData(text: "ES53 0049 4174 0121 1408 4349"));
-                      },
-                    ),
-                    AppListTile(
-                      text: translate('bank_account_description'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: Dimens.paddingXLarge),
-                AppText(translate('hotel_recommendation_title'), type: TextTypes.titleBold),
+                AppText(translate('hotel_recommendation_title'),
+                    type: TextTypes.titleBold),
                 const SizedBox(height: Dimens.paddingLarge),
                 CardWithImageAndDescription(
                   imagePath: 'assets/images/hotel_recommendation.jpg',
@@ -85,7 +70,8 @@ class InformationPage extends StatelessWidget {
                       text: translate('hotel_recommendation_direction'),
                       iconData: Icons.location_on,
                       onTap: () {
-                        launchUrlString('https://goo.gl/maps/KjgE3Qh8Q2yq7Db98');
+                        launchUrlString(
+                            'https://goo.gl/maps/KjgE3Qh8Q2yq7Db98');
                       },
                     ),
                     AppListTile(
