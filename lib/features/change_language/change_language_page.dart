@@ -15,24 +15,24 @@ class ChangeLanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LanguageBloc bloc = LanguageBloc();
-    return PageWrapper(
-      appBarName: translate('change_language'),
-      showDrawer: true,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimens.paddingXLarge,
-            horizontal: Dimens.paddingLarge,
-          ),
-          child: BlocProvider(
-            create: (context) => bloc,
-            child: BlocBuilder<LanguageBloc, LanguageState>(
-              builder: (context, state) {
-                if (state is InitLanguageState) {
-                  bloc.add(LanguageInitEvent());
-                }
-                if (state is CurrentLanguageState) {
-                  return Column(
+    return BlocProvider(
+      create: (context) => bloc,
+      child: BlocBuilder<LanguageBloc, LanguageState>(
+        builder: (context, state) {
+          if (state is InitLanguageState) {
+            bloc.add(LanguageInitEvent());
+          }
+          if (state is CurrentLanguageState) {
+            return PageWrapper(
+              appBarName: translate('change_language'),
+              showDrawer: true,
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: Dimens.paddingXLarge,
+                    horizontal: Dimens.paddingLarge,
+                  ),
+                  child: Column(
                     children: [
                       Center(
                         child: AppText(
@@ -65,13 +65,13 @@ class ChangeLanguagePage extends StatelessWidget {
                         },
                       ),
                     ],
-                  );
-                }
-                return const CircularProgress();
-              },
-            ),
-          ),
-        ),
+                  ),
+                ),
+              ),
+            );
+          }
+          return const CircularProgress();
+        },
       ),
     );
   }

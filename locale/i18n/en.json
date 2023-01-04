@@ -22,7 +22,7 @@
   "select_language_es": "Español",
   "task_add_people_title": "Add companions",
   "task_add_people_subtitle": "Unregistered companions only",
-  "task_add_intolerances_title": "Add intolerances and select diet",
+  "task_add_intolerances_title": "Add intolerances, select diet and menu",
   "task_add_bus_interested_title": "Interested in the bus",
   "task_add_hotel_interested_title": "Interested in the hotel",
   "task_subscribe_photos_title": "Subscribe to photos",
@@ -66,5 +66,6 @@
   "form_dialog_title": "Are you sure?",
   "form_dialog_text": "You will loose your answers",
   "persons_added":"Persons added",
-  "invitation": "Invitation"
+  "invitation": "Invitation",
+  "add_person": "Add person"
 }

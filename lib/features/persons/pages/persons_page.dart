@@ -52,7 +52,7 @@ class PersonsPage extends StatelessWidget {
                       const SizedBox(height: Dimens.paddingMedium),
                       CardButton(
                         leading: const Icon(Icons.add),
-                        title: translate('Add person'),
+                        title: translate('add_person'),
                         onTap: () {
                           navigatorBloc.add(
                             PushScreenNavigationEvent(

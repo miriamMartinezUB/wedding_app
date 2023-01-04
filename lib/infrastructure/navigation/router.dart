@@ -6,6 +6,7 @@ import 'package:wedding_jc/features/errors/update_ready_page.dart';
 import 'package:wedding_jc/features/form/form_builder_page.dart';
 import 'package:wedding_jc/features/home/home_page.dart';
 import 'package:wedding_jc/features/information/information_page.dart';
+import 'package:wedding_jc/features/invitation/invitation_page.dart';
 import 'package:wedding_jc/features/persons/pages/persons_page.dart';
 import 'package:wedding_jc/features/present/present_page.dart';
 import 'package:wedding_jc/features/sign_up/sign_up_page.dart';
@@ -31,6 +32,8 @@ class WeddingRouter {
         );
       case Routes.present:
         return MaterialPageRoute(builder: (context) => const PresentPage());
+      case Routes.invitation:
+        return MaterialPageRoute(builder: (context) => const InvitationPage());
       case Routes.form:
         ArgsFormBuilderPage args = settings.arguments as ArgsFormBuilderPage;
         return MaterialPageRoute(

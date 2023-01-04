@@ -39,6 +39,7 @@ class PageWrapper extends StatelessWidget {
         return canGoBack;
       },
       child: Scaffold(
+        backgroundColor: backgroundColor,
         drawer: showDrawer ? const AppDrawer() : null,
         appBar: AppBar(
           backgroundColor: PaletteColors.primary,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_translate/flutter_translate.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wedding_jc/features/information/views/app_list_tile.dart';
@@ -39,8 +38,7 @@ class InformationPage extends StatelessWidget {
                       text: translate('place_direction'),
                       iconData: Icons.location_on,
                       onTap: () {
-                        launchUrlString(
-                            'https://goo.gl/maps/gxQGEEP849W6vgRy5');
+                        launchUrlString('https://goo.gl/maps/gxQGEEP849W6vgRy5');
                       },
                     ),
                     AppListTile(
@@ -50,39 +48,61 @@ class InformationPage extends StatelessWidget {
                         launchUrlString('tel://662630438');
                       },
                     ),
-                    AppListTile(
-                      text: translate('place_description'),
-                    ),
                   ],
                 ),
                 const SizedBox(height: Dimens.paddingXLarge),
-                AppText(translate('hotel_recommendation_title'),
-                    type: TextTypes.titleBold),
+                AppText(translate('hotel_recommendation_title'), type: TextTypes.titleBold),
                 const SizedBox(height: Dimens.paddingLarge),
                 CardWithImageAndDescription(
-                  imagePath: 'assets/images/hotel_recommendation.jpg',
+                  imagePath: 'assets/images/can_casadella.jpg',
                   descriptions: [
                     AppListTile(
                       text: translate('hotel_recommendation_name'),
                       isTitle: true,
                     ),
                     AppListTile(
-                      text: translate('hotel_recommendation_direction'),
+                      text: 'Carrer de la Cisa, 53, 08338 Premià de Dalt, Barcelona',
                       iconData: Icons.location_on,
                       onTap: () {
-                        launchUrlString(
-                            'https://goo.gl/maps/KjgE3Qh8Q2yq7Db98');
+                        launchUrlString('https://goo.gl/maps/drysRALEmNd3wYyd7');
                       },
                     ),
                     AppListTile(
-                      text: translate('932 22 60 06'),
+                      text: translate('656 85 52 99'),
                       iconData: Icons.phone,
                       onTap: () {
-                        launchUrlString('tel://932226006');
+                        launchUrlString('tel://656855299');
                       },
                     ),
                     AppListTile(
                       text: translate('hotel_recommendation_description'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: Dimens.paddingLarge),
+                CardWithImageAndDescription(
+                  imagePath: 'assets/images/sorli_emocions.jpg',
+                  descriptions: [
+                    AppListTile(
+                      text: translate('hotel_recommendation_name_2'),
+                      isTitle: true,
+                    ),
+                    AppListTile(
+                      text: 'Carrer Lluís Jordà Cardona, 2, 08339 Vilassar de Dalt, Barcelona',
+                      iconData: Icons.location_on,
+                      onTap: () {
+                        launchUrlString('https://goo.gl/maps/u1nFRyTHceCgeJRWA');
+                      },
+                    ),
+                    AppListTile(
+                      text: translate('937 53 82 40'),
+                      iconData: Icons.phone,
+                      onTap: () {
+                        launchUrlString('tel://937538240');
+                      },
+                    ),
+                    AppListTile(
+                      text: translate('hotel_recommendation_description_2'),
                     ),
                   ],
                 ),

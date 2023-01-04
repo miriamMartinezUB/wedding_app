@@ -22,9 +22,9 @@
   "select_language_es": "Español",
   "task_add_people_title": "Añadir acompañantes",
   "task_add_people_subtitle": "Añadir solo acompañantes no registrados",
-  "task_add_intolerances_title": "Añadir intolerancias y dieta",
-  "task_add_bus_interested_title": "Interesado en autos",
-  "task_add_hotel_interested_title": "Interesado en hotel",
+  "task_add_intolerances_title": "Añadir intolerancias, dieta y menú",
+  "task_add_bus_interested_title": "Interesado/a en autobús",
+  "task_add_hotel_interested_title": "Interesado/a en hotel",
   "task_subscribe_photos_title": "Suscribirse a fotos",
   "home": "Inicio",
   "information": "Información",
@@ -44,7 +44,7 @@
   "add_person_question_date_birth": "Fecha de nacimiento",
   "add_diet_and_intolerances_form_name": "Añadir dieta e intolerancia de cada persona",
   "add_diet_and_intolerances_question_diet": "Dieta",
-  "add_diet_and_intolerances_question_menu": "Menu",
+  "add_diet_and_intolerances_question_menu": "Menú",
   "add_diet_and_intolerances_question_intolerances": "Intolerancias",
   "add_diet_and_intolerances_question_allergy": "Alergias",
   "add_diet_and_intolerances_question_other": "Otras alergias e intolerancias",
@@ -66,5 +66,6 @@
   "form_dialog_title": "¿Está seguro/a?",
   "form_dialog_text": "Perderá sus respuestas",
   "persons_added":"Personas añadidas",
-  "invitation": "Invitación"
+  "invitation": "Invitación",
+  "add_person": "Añade una nueva persona"
 }
