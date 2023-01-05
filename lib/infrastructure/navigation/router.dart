@@ -11,6 +11,7 @@ import 'package:wedding_jc/features/persons/pages/persons_page.dart';
 import 'package:wedding_jc/features/present/present_page.dart';
 import 'package:wedding_jc/features/sign_up/sign_up_page.dart';
 import 'package:wedding_jc/features/splash/splash_page.dart';
+import 'package:wedding_jc/features/summary/summary_page.dart';
 import 'package:wedding_jc/resources/routes.dart';
 
 class WeddingRouter {
@@ -51,6 +52,8 @@ class WeddingRouter {
         return MaterialPageRoute(builder: (context) => const UpdateReadyPage());
       case Routes.changeLanguage:
         return MaterialPageRoute(builder: (context) => const ChangeLanguagePage());
+      case Routes.summary:
+        return MaterialPageRoute(builder: (context) => const SummaryPage());
       default:
         return MaterialPageRoute(builder: (context) => const SplashPage());
     }

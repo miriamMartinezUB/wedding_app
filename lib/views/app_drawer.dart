@@ -33,6 +33,12 @@ class AppDrawer extends StatelessWidget {
                       iconData: Icons.home_outlined,
                       destination: Routes.home,
                     ),
+                    if (authService.isUserAdmin)
+                      DrawerItem(
+                        text: translate('summary'),
+                        iconData: Icons.summarize_outlined,
+                        destination: Routes.summary,
+                      ),
                     DrawerItem(
                       text: translate('information'),
                       iconData: Icons.info_outline_rounded,
@@ -109,11 +115,11 @@ class DrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NavigatorBloc navigatorBloc = BlocProvider.of<NavigatorBloc>(context);
     return InkWell(
       splashColor: PaletteColors.primary,
       onTap: () {
         if (destination != null) {
-          final NavigatorBloc navigatorBloc = BlocProvider.of<NavigatorBloc>(context);
           if (destination == Routes.home) {
             navigatorBloc.add(HomeNavigationEvent());
           } else {

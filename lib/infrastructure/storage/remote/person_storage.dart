@@ -64,6 +64,17 @@ class PersonStorage extends RemoteStorageInterface<Person> {
         },
       );
 
+  Stream<List<Person>> get allWithoutFilters$ => collectionRef.snapshots().distinct().map(
+        (event) {
+          List<Person> persons = [];
+          final List<QueryDocumentSnapshot> docs = event.docs;
+          for (final QueryDocumentSnapshot doc in docs) {
+            persons.add(Person.fromDoc(doc));
+          }
+          return persons;
+        },
+      );
+
   @override
   Future<void> update(Person t) async {
     DocumentReference doc = collectionRef.doc(t.id);

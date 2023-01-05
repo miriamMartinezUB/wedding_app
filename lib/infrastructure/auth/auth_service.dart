@@ -11,6 +11,13 @@ import 'package:wedding_jc/infrastructure/storage/locale_storage_service.dart';
 import 'package:wedding_jc/infrastructure/storage/remote/person_storage.dart';
 import 'package:wedding_jc/resources/storage_keys.dart';
 
+const List<String> _admins = [
+  'miriam.martinez.mc@gmail.com',
+  'judit.cristian.wedding@gmail.com',
+  'crdiego87@gmail.com',
+  'juditmartinez90@gmail.com',
+];
+
 class AuthService {
   late final FirebaseAuth _firebaseAuth;
   late final LocaleStorageService _storageService;
@@ -38,6 +45,8 @@ class AuthService {
 
     return user;
   }
+
+  bool get isUserAdmin => _admins.contains(user?.email);
 
   Future<void> logout() async {
     _cleanAppUser();

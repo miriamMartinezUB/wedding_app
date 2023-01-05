@@ -67,5 +67,11 @@
   "form_dialog_text": "Perderá sus respuestas",
   "persons_added":"Personas añadidas",
   "invitation": "Invitación",
-  "add_person": "Añade una nueva persona"
+  "add_person": "Añade una nueva persona",
+  "summary": "Resumen",
+  "bus": "Autobús",
+  "hotel": "Hotel",
+  "total": "Total",
+  "yes": "Sí",
+  "no": "No"
 }

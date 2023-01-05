@@ -67,5 +67,11 @@
   "form_dialog_text": "Es perdran les seves respostes",
   "persons_added":"Persones afegides",
   "invitation": "Invitació",
-  "add_person": "Afegeix una nova persona"
+  "add_person": "Afegeix una nova persona",
+  "summary": "Resumen",
+  "bus": "Autobús",
+  "hotel": "Hotel",
+  "total": "Total",
+  "yes": "Si",
+  "no": "No"
 }

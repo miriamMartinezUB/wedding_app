@@ -67,5 +67,11 @@
   "form_dialog_text": "You will loose your answers",
   "persons_added":"Persons added",
   "invitation": "Invitation",
-  "add_person": "Add person"
+  "add_person": "Add person",
+  "summary": "Summary",
+  "bus": "Bus",
+  "hotel": "Hotel",
+  "total": "Total",
+  "yes": "Yes",
+  "no": "No"
 }

@@ -12,4 +12,5 @@ class Routes {
   static const String form = '/form';
   static const String information = '/information';
   static const String changeLanguage = '/change_language';
+  static const String summary = '/summary';
 }
