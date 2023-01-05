@@ -8,7 +8,7 @@ class NavigatorBloc extends Bloc<NavigationEvent, dynamic> {
   final NavigationService _navigationService = locator<NavigationService>();
 
   NavigatorBloc(initialState) : super(initialState) {
-    on<HomeNavigationEvent>((event, emit) => _navigationService.replace(Routes.home));
+    on<HomeNavigationEvent>((event, emit) => _navigationService.replace(Routes.main));
     on<BackNavigationEvent>((event, emit) => _navigationService.goBack());
     on<InitialRouteNavigationEvent>((event, emit) => _navigationService.goToInitialRoute());
     on<PushScreenNavigationEvent>((event, emit) => _navigationService.navigateTo(
