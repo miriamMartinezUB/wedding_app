@@ -4,11 +4,8 @@ import 'package:wedding_jc/features/diet/pages/diet_page.dart';
 import 'package:wedding_jc/features/errors/not_implemented_page.dart';
 import 'package:wedding_jc/features/errors/update_ready_page.dart';
 import 'package:wedding_jc/features/form/form_builder_page.dart';
-import 'package:wedding_jc/features/home/home_page.dart';
-import 'package:wedding_jc/features/information/information_page.dart';
-import 'package:wedding_jc/features/invitation/invitation_page.dart';
+import 'package:wedding_jc/features/main_flow/main_page.dart';
 import 'package:wedding_jc/features/persons/pages/persons_page.dart';
-import 'package:wedding_jc/features/present/present_page.dart';
 import 'package:wedding_jc/features/sign_up/sign_up_page.dart';
 import 'package:wedding_jc/features/splash/splash_page.dart';
 import 'package:wedding_jc/features/summary/summary_page.dart';
@@ -19,10 +16,8 @@ class WeddingRouter {
     switch (settings.name) {
       case Routes.signUp:
         return MaterialPageRoute(builder: (context) => const RegisterPage());
-      case Routes.home:
-        return MaterialPageRoute(builder: (context) => const HomePage());
-      case Routes.information:
-        return MaterialPageRoute(builder: (context) => const InformationPage());
+      case Routes.main:
+        return MaterialPageRoute(builder: (context) => const MainPage());
       case Routes.persons:
         return MaterialPageRoute(
           builder: (context) => const PersonsPage(),
@@ -31,10 +26,6 @@ class WeddingRouter {
         return MaterialPageRoute(
           builder: (context) => const DietPage(),
         );
-      case Routes.present:
-        return MaterialPageRoute(builder: (context) => const PresentPage());
-      case Routes.invitation:
-        return MaterialPageRoute(builder: (context) => const InvitationPage());
       case Routes.form:
         ArgsFormBuilderPage args = settings.arguments as ArgsFormBuilderPage;
         return MaterialPageRoute(

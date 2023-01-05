@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wedding_jc/features/main_flow/bloc/main_flow_bloc.dart';
+import 'package:wedding_jc/features/main_flow/drawer_item_id.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_bloc.dart';
 import 'package:wedding_jc/infrastructure/navigation/bloc/navigation_event.dart';
 import 'package:wedding_jc/resources/dimens.dart';
@@ -18,6 +20,7 @@ class HomeButton extends StatelessWidget {
         child: Icon(Icons.home, color: PaletteColors.icons),
       ),
       onTap: () {
+        BlocProvider.of<MainFlowBloc>(context).add(ChangeMainScreenEvent(itemId: DrawerItemId.home));
         BlocProvider.of<NavigatorBloc>(context).add(HomeNavigationEvent());
       },
     );

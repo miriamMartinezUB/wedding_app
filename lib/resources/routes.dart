@@ -4,7 +4,7 @@ class Routes {
   static const String updateReady = '/update_ready';
   static const String login = '/login';
   static const String signUp = '/register';
-  static const String home = '/home';
+  static const String main = '/main';
   static const String persons = '/persons';
   static const String dietAndIntolerances = '/diet_and_intolerances';
   static const String present = '/present';
