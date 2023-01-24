@@ -54,33 +54,6 @@ class InformationPage extends StatelessWidget {
                 AppText(translate('hotel_recommendation_title'), type: TextTypes.titleBold),
                 const SizedBox(height: Dimens.paddingLarge),
                 CardWithImageAndDescription(
-                  imagePath: 'assets/images/can_casadella.jpg',
-                  descriptions: [
-                    AppListTile(
-                      text: translate('hotel_recommendation_name'),
-                      isTitle: true,
-                    ),
-                    AppListTile(
-                      text: 'Carrer de la Cisa, 53, 08338 Premià de Dalt, Barcelona',
-                      iconData: Icons.location_on,
-                      onTap: () {
-                        launchUrlString('https://goo.gl/maps/drysRALEmNd3wYyd7');
-                      },
-                    ),
-                    AppListTile(
-                      text: translate('656 85 52 99'),
-                      iconData: Icons.phone,
-                      onTap: () {
-                        launchUrlString('tel://656855299');
-                      },
-                    ),
-                    AppListTile(
-                      text: translate('hotel_recommendation_description'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: Dimens.paddingLarge),
-                CardWithImageAndDescription(
                   imagePath: 'assets/images/sorli_emocions.jpg',
                   descriptions: [
                     AppListTile(
