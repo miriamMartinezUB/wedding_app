@@ -25,11 +25,11 @@ class PresentPage extends StatelessWidget {
             AppText(translate('bank_account_description')),
             const SizedBox(height: Dimens.paddingLarge),
             AppListTile(
-              text: 'ES53 0049 4174 0121 1408 4349',
+              text: 'ES54 2100 0834 5501 0334 5473',
               iconData: Icons.copy,
               onTap: () async {
                 await Clipboard.setData(
-                  const ClipboardData(text: "ES53 0049 4174 0121 1408 4349"),
+                  const ClipboardData(text: "ES54 2100 0834 5501 0334 5473"),
                 );
               },
             ),
